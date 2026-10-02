@@ -1,0 +1,39 @@
+:root {
+/* Light theme */
+color-scheme: light;
+
+--color-bg: #ffffff;
+--color-surface: #f3f4f6;
+--color-text: #1f2937;
+--color-text-muted: #4b5563;
+--color-primary: #1d4ed8;
+--color-border: #d1d5db;
+
+/* Spacing */
+--spacing-xs: 4px;
+--spacing-sm: 8px;
+--spacing-md: 16px;
+--spacing-lg: 24px;
+--spacing-xl: 32px;
+
+/* Layout */
+--container-width: 1200px;
+--sidebar-width: 250px;
+
+/* Border radius */
+--radius-sm: 6px;
+--radius-md: 12px;
+--radius-lg: 20px;
+}
+
+/* Dark theme */
+[data-theme="dark"] {
+color-scheme: dark;
+
+--color-bg: #111827;
+--color-surface: #1f2937;
+--color-text: #f9fafb;
+--color-text-muted: #d1d5db;
+--color-primary: #93c5fd;
+--color-border: #4b5563;
+}
