@@ -3,7 +3,7 @@
 // =========================
 
 const state = {
-  theme: "light",
+  theme: localStorage.getItem("theme") || "light",
   formStatus: ""
 };
 
@@ -13,10 +13,20 @@ const state = {
 
 const themeToggle = document.querySelector(".theme-toggle");
 
+document.documentElement.dataset.theme = state.theme;
+document.documentElement.style.colorScheme = state.theme;
+
+themeToggle.setAttribute(
+  "aria-pressed",
+  state.theme === "dark"
+);
+
 const themeIcon = themeToggle.querySelector(".theme-icon");
 
 themeToggle.addEventListener("click", () => {
   state.theme = state.theme === "light" ? "dark" : "light";
+
+  localStorage.setItem("theme", state.theme);
 
   document.documentElement.dataset.theme = state.theme;
   document.documentElement.style.colorScheme = state.theme;
