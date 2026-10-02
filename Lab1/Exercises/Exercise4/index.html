@@ -10,6 +10,17 @@
   <main>
     <h1>Live Data</h1>
 
+    <section class="state-container" aria-labelledby="empty-title">
+  <h2 id="empty-title">No food found</h2>
+  <p>Try changing your filters to find a food recommendation.</p>
+</section>
+
+<section class="state-container error-state" aria-labelledby="error-title">
+  <h2 id="error-title">Something went wrong</h2>
+  <p>We couldn't load the food recommendations.</p>
+  <button type="button">Retry</button>
+</section>
+
     <section class="food-list" aria-label="Food recommendations">
       <article class="food-card">
         <h2>Pho Bo</h2>

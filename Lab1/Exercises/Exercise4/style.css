@@ -32,3 +32,33 @@ body {
   color: #075985;
   font-size: 0.85rem;
 }
+
+/* T-03C: Empty & Error States */
+
+.state-container {
+  max-width: 500px;
+  margin-top: 24px;
+  padding: 24px;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  background: #f8fafc;
+}
+
+.state-container h2 {
+  margin-top: 0;
+}
+
+.error-state button {
+  padding: 8px 16px;
+  border: 0;
+  border-radius: 6px;
+  background: #0284c7;
+  color: white;
+  font: inherit;
+  cursor: pointer;
+}
+
+.error-state button:focus-visible {
+  outline: 3px solid #38bdf8;
+  outline-offset: 2px;
+}
