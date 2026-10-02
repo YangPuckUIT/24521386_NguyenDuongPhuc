@@ -1,8 +1,18 @@
 # Task Decomposition
 
-## T-01: Semantic DOM Architecture & A11y Contract
+## Exercise 1: Semantic DOM Architecture & A11y Contract
 
-- Build semantic HTML landmark structure
-- Use 0 `<div>` elements
+### T-01: Semantic DOM Architecture & Accessibility
+- Define semantic landmark hierarchy
+- Ensure 0 `<div>` elements
 - Implement accessible skip-link
-- Verify landmark tree in Chrome DevTools
+- Use `<main id="main">`
+- Verify Landmark Tree in Chrome DevTools
+- Commit HTML implementation
+
+### Definition of Done
+- [ ] 0 `<div>` elements
+- [ ] Semantic landmark hierarchy implemented
+- [ ] Skip-link works
+- [ ] Landmark Tree verified
+- [ ] HTML committed separately from CSS
