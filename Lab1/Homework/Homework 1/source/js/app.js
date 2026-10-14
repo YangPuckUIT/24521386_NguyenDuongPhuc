@@ -14,7 +14,6 @@ const state = {
 const themeToggle = document.querySelector(".theme-toggle");
 
 document.documentElement.dataset.theme = state.theme;
-document.documentElement.style.colorScheme = state.theme;
 
 themeToggle.setAttribute(
   "aria-pressed",
@@ -28,8 +27,7 @@ themeToggle.addEventListener("click", () => {
 
   localStorage.setItem("theme", state.theme);
 
-  document.documentElement.dataset.theme = state.theme;
-  document.documentElement.style.colorScheme = state.theme;
+document.documentElement.dataset.theme = state.theme;
 
   themeToggle.setAttribute(
     "aria-pressed",

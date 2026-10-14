@@ -144,27 +144,28 @@ Keyboard focus in dark theme:
 - [x] Focus moves forward and backward as expected.
 - [x] No keyboard traps were found during manual testing.
 
-### M3 — Strict Content Security Policy (CSP)
+### M3: Strict Content Security Policy
 
-**Tasks**
+**Changes**
+- Added a Content Security Policy using a meta tag.
+- Restricted scripts and styles to the same origin.
+- Disallowed plugin content and restricted resource loading.
+- Kept JavaScript in the external `js/app.js` file.
+- Removed no inline handlers because none were present in the inspected HTML.
 
-- [ ] Search for inline event-handler attributes such as `onclick`, `onload`, and similar patterns.
-- [ ] Replace inline event handlers with appropriate JavaScript event listeners.
-- [ ] Identify scripts, styles, images, fonts, and other required resources.
-- [ ] Configure a strict CSP suitable for the project's hosting environment.
-- [ ] Avoid unnecessary unsafe CSP exceptions.
-- [ ] Test the website and inspect browser-console CSP violations.
+**Verification**
+- Tested the website using Python's HTTP server.
+- Verified that the page loads without CSP errors.
+- Verified the theme toggle and contact form.
+- Confirmed that the CSP remains enabled without `unsafe-inline`.
 
 **Acceptance Criteria**
+- [x] CSP is configured.
+- [x] No inline JavaScript handlers are present in the inspected HTML.
+- [x] Main interactions work with CSP enabled.
+- [x] No CSP errors occur during testing.
 
-- No inline event-handler attributes remain in the shipped HTML.
-- The CSP is configured through an appropriate response header or supported meta policy.
-- Required website functionality continues to work.
-- CSP violations and any remaining limitations are documented.
-
-**Commit**
-
-`security: enforce strict CSP and remove inline handlers`
+**Note:** The browser may report a missing `favicon.ico` if no favicon is provided.
 
 ### M4 — Lighthouse Performance Audit
 

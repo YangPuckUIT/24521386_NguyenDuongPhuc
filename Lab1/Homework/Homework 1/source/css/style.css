@@ -9,8 +9,15 @@
 }
 
 html {
-  color-scheme: light dark;
   scroll-behavior: smooth;
+}
+
+:root {
+  color-scheme: light;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
 }
 
 body {
@@ -41,18 +48,21 @@ textarea {
    ========================= */
 
 :root {
+  color-scheme: light;
+
   --bg-color: #ffffff;
   --text-color: #1f2937;
   --card-bg: #f8fafc;
   --border-color: #d1d5db;
   --accent-color: #2563eb;
-
   --spacing-sm: 0.5rem;
   --spacing-md: 1rem;
   --spacing-lg: 1.5rem;
 }
 
 :root[data-theme="dark"] {
+  color-scheme: dark;
+
   --bg-color: #111827;
   --text-color: #f9fafb;
   --card-bg: #1f2937;
