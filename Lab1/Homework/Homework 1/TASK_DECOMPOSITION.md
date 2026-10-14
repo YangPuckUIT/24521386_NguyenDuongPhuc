@@ -17,21 +17,78 @@ The implementation must follow small, atomic milestones with separate commits. A
 
 ## 3. Milestones
 
-### M0 — Project Inspection and Baseline
+## M0 — Project Inspection and Baseline
 
 **Tasks**
 
-- [ ] Inspect the repository structure and existing source code.
-- [ ] Identify the website pages, navigation, interactive elements, and assets.
-- [ ] Identify the available build, run, and test commands.
-- [ ] Run the website and check its current behavior.
-- [ ] Record baseline accessibility and Lighthouse results where applicable.
+- [x] Inspect the repository structure and existing source code.
+- [x] Identify the website pages, navigation, interactive elements, and assets.
+- [x] Identify the available build, run, and test commands.
+- [x] Run the website and check its current behavior.
+- [x] Record baseline accessibility and Lighthouse results where applicable.
+
+**Project Structure**
+
+The project is based on Exercise 3, which contains HTML, CSS, JavaScript, and an image asset.
+
+```text
+Homework 1/
+├── TASK_DECOMPOSITION.md
+├── source/
+│   ├── index.html
+│   ├── css/
+│   │   └── style.css
+│   ├── js/
+│   │   └── app.js
+│   └── images/
+│       └── angry.jpg
+└── screenshots/
+    └── lighthouse-baseline.png
+```
+
+**Initial Findings**
+
+- The website contains a navigation bar, hero section, skills section, projects section, contact form, and footer.
+- Interactive elements include the theme toggle and contact form.
+- The website uses HTML, CSS, and vanilla JavaScript.
+- The browser Console displayed `Live reload enabled.` during testing. No JavaScript errors were reported during the check.
+- The Network panel showed requests for the HTML, CSS, JavaScript, image, and WebSocket connection.
+- Basic keyboard navigation using the Tab key was tested.
+
+**Baseline Lighthouse Results**
+
+| Category | Score |
+|---|---:|
+| Accessibility | 95 |
+| Best Practices | 100 |
+| SEO | 100 |
+
+Additional performance metrics:
+
+- First Contentful Paint (FCP): 0.2 s
+- Largest Contentful Paint (LCP): 0.4 s
+- Total Blocking Time (TBT): 160 ms
+- Cumulative Layout Shift (CLS): 0
+- Speed Index: 0.8 s
+
+**Issues Identified**
+
+- A color contrast issue was reported by Lighthouse.
+- Lighthouse suggested optimizing `images/angry.jpg` (88.7 KiB), with estimated savings of 37.2 KiB.
+- Additional JavaScript and performance diagnostics need to be reviewed before deciding whether changes are necessary.
+
+**Baseline Evidence**
+
+**Baseline Lighthouse Screenshot**
+
+![Lighthouse baseline results](screenshots/lighthouse-baseline.png)
+
 
 **Acceptance Criteria**
 
-- The existing project structure is understood.
-- The website can be run using documented instructions.
-- Initial issues and baseline results are recorded.
+- [x] The existing project structure is understood.
+- [x] The website can be run and its basic behavior has been checked.
+- [x] Initial issues and baseline results are recorded.
 
 **Commit**
 
