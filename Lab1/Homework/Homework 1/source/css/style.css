@@ -280,6 +280,10 @@ textarea {
   cursor: pointer;
 }
 
+:root[data-theme="dark"] #contact-form button {
+  color: #111827;
+}
+
 #contact-form button:hover {
   opacity: 0.9;
 }
@@ -355,4 +359,9 @@ textarea {
   stroke-width: 2;
   stroke-linecap: round;
   stroke-linejoin: round;
+}
+
+:focus-visible {
+  outline: 3px solid var(--accent-color);
+  outline-offset: 3px;
 }
