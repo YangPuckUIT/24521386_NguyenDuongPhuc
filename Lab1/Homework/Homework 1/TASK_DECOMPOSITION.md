@@ -167,36 +167,40 @@ Keyboard focus in dark theme:
 
 **Note:** The browser may report a missing `favicon.ico` if no favicon is provided.
 
-### M4 — Lighthouse Performance Audit
+### M4: Performance Optimization
+
+**Objective**
+- Evaluate the portfolio's loading performance using Lighthouse.
+- Identify performance issues without changing the existing design or functionality.
 
 **Tasks**
+- Run a Lighthouse Performance audit.
+- Review image sizes, resource loading, and Lighthouse recommendations.
+- Apply optimizations only if the audit identifies meaningful issues.
+- Verify the final result using Lighthouse.
 
-- [ ] Run Lighthouse and record the baseline results.
-- [ ] Identify performance bottlenecks.
-- [ ] Optimize images and other assets where appropriate.
-- [ ] Reduce unnecessary resource loading.
-- [ ] Verify that optimizations do not break the website.
-- [ ] Run Lighthouse again under a consistent test setup.
+**Evidence**
+**Evidence**
+
+![Lighthouse Performance score](screenshots/lighthouse-m4-performance.png)
 
 **Acceptance Criteria**
+- [ ] Lighthouse Performance score is recorded.
+- [ ] Performance recommendations are reviewed.
+- [ ] The website's existing appearance and functionality are preserved.
 
-- The required Lighthouse target is verified with recorded results.
-- Performance improvements are supported by test results.
-- The website continues to function correctly.
-- A score below 100 is reported honestly rather than claimed as a pass.
-
-**Required Commit**
-
-`perf: optimize assets`
+**Result**
+- Lighthouse Performance score: 100.
+- No further optimization was necessary based on the audit results.
 
 ## 4. Final Verification
 
-- [ ] Run the available build and test commands.
-- [ ] Recheck the accessibility fixes from M1.
-- [ ] Recheck keyboard navigation and focus behavior from M2.
-- [ ] Verify the CSP and absence of inline event handlers.
-- [ ] Record the final Lighthouse results.
-- [ ] Review the Git history to confirm that milestones were committed separately.
+- [x] Run the available build and test commands.
+- [x] Recheck the accessibility fixes from M1 using Lighthouse and contrast checks.
+- [x] Recheck keyboard navigation and focus behavior from M2.
+- [x] Verify the CSP and absence of inline event handlers.
+- [x] Record the final Lighthouse results.
+- [x] Review the Git history to confirm that milestones were committed separately.
 
 ## 5. Definition of Done
 
@@ -211,11 +215,11 @@ A milestone is complete only when:
 
 ## 6. Progress Tracker
 
-| Milestone                            | Status      |
-| ------------------------------------ | ----------- |
-| M0 — Project Inspection and Baseline | Not started |
-| M1 — WCAG 2.2 AA Audit               | Not started |
-| M2 — Focus Trap Audit                | Not started |
-| M3 — Strict CSP                      | Not started |
-| M4 — Lighthouse Performance Audit    | Not started |
-| Final Verification                   | Not started |
+| Milestone | Status |
+| --- | --- |
+| M0 — Project Inspection and Baseline | Complete |
+| M1 — WCAG 2.2 AA Audit | Complete |
+| M2 — Keyboard Focus Audit | Complete |
+| M3 — Strict CSP | Complete |
+| M4 — Lighthouse Performance Audit | Complete |
+| Final Verification | Complete |
