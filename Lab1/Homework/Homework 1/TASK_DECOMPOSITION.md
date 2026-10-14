@@ -22,14 +22,15 @@ The implementation must follow small, atomic milestones with separate commits. A
 **Tasks**
 
 - [x] Inspect the repository structure and existing source code.
-- [x] Identify the website pages, navigation, interactive elements, and assets.
-- [x] Identify the available build, run, and test commands.
-- [x] Run the website and check its current behavior.
-- [x] Record baseline accessibility and Lighthouse results where applicable.
+- [x] Identify the website sections, navigation, interactive elements, and assets.
+- [x] Identify how to run the website and inspect its behavior.
+- [x] Test basic keyboard navigation and browser loading behavior.
+- [x] Run Lighthouse and record the initial results.
+- [x] Save a screenshot of the baseline results.
 
 **Project Structure**
 
-The project is based on Exercise 3, which contains HTML, CSS, JavaScript, and an image asset.
+The project uses Exercise 3 as its starting point. It is built with HTML, CSS, and vanilla JavaScript.
 
 ```text
 Homework 1/
@@ -49,50 +50,44 @@ Homework 1/
 **Initial Findings**
 
 - The website contains a navigation bar, hero section, skills section, projects section, contact form, and footer.
-- Interactive elements include the theme toggle and contact form.
-- The website uses HTML, CSS, and vanilla JavaScript.
-- The browser Console displayed `Live reload enabled.` during testing. No JavaScript errors were reported during the check.
-- The Network panel showed requests for the HTML, CSS, JavaScript, image, and WebSocket connection.
+- Interactive features include a theme toggle and contact form.
+- The website uses HTML, CSS, and vanilla JavaScript without a frontend framework.
+- The browser Console and Network panel were inspected during the initial test.
 - Basic keyboard navigation using the Tab key was tested.
 
 **Baseline Lighthouse Results**
 
+The Lighthouse audit was run in a Chrome Incognito window to reduce potential interference from browser extensions.
+
 | Category | Score |
 |---|---:|
-| Accessibility | 95 |
+| Performance | 100 |
+| Accessibility | 100 |
 | Best Practices | 100 |
 | SEO | 100 |
 
-Additional performance metrics:
+An earlier Performance audit scored 90 in the regular Chrome profile. The score may have been affected by browser extensions, so the Incognito result is used as the baseline for subsequent comparisons.
 
-- First Contentful Paint (FCP): 0.2 s
-- Largest Contentful Paint (LCP): 0.4 s
-- Total Blocking Time (TBT): 160 ms
-- Cumulative Layout Shift (CLS): 0
-- Speed Index: 0.8 s
+**Initial Assessment**
 
-**Issues Identified**
+The Lighthouse results indicate strong baseline scores across all four categories. However, Lighthouse scores alone do not prove that every accessibility, keyboard navigation, or security requirement has been satisfied.
 
-- A color contrast issue was reported by Lighthouse.
-- Lighthouse suggested optimizing `images/angry.jpg` (88.7 KiB), with estimated savings of 37.2 KiB.
-- Additional JavaScript and performance diagnostics need to be reviewed before deciding whether changes are necessary.
+The following milestones will verify the specific requirements and address any issues identified during testing.
 
 **Baseline Evidence**
 
-**Baseline Lighthouse Screenshot**
-
 ![Lighthouse baseline results](screenshots/lighthouse-baseline.png)
-
 
 **Acceptance Criteria**
 
-- [x] The existing project structure is understood.
+- [x] The existing project structure is documented.
 - [x] The website can be run and its basic behavior has been checked.
-- [x] Initial issues and baseline results are recorded.
+- [x] Initial Lighthouse scores are recorded.
+- [x] The baseline screenshot is saved.
 
 **Commit**
 
-`docs: document portfolio audit plan`
+`docs: document project inspection and baseline audit`
 
 ### M1 — WCAG 2.2 AA Accessibility Audit
 
