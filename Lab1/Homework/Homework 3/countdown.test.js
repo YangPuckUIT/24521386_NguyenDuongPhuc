@@ -27,9 +27,11 @@ function assertEqual(actual, expected) {
 const engine = window.CountdownEngine;
 
 test("Parses a valid UTC timestamp", () => {
+    const timestamp = "2027-01-01T00:00:00.123Z";
+
     assertEqual(
-        engine.parseTargetTimestamp("2027-01-01T00:00:00Z"),
-        Date.parse("2027-01-01T00:00:00Z")
+        engine.parseTargetTimestamp(timestamp),
+        Date.parse(timestamp)
     );
 });
 
