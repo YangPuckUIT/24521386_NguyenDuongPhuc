@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio Engine Test</title>
+</head>
+<body>
+    <h1>Audio Engine Test</h1>
+    <p>Test the audio engine independently from the drum kit UI.</p>
+
+    <button id="test-kick">Test Kick</button>
+    <button id="test-snare">Test Snare</button>
+    <button id="test-polyphony">Test Polyphony</button>
+
+    <p id="status" role="status">Ready to test.</p>
+
+    <script src="audio-engine.js"></script>
+    <script>
+        const engine = new AudioEngine();
+        const status = document.getElementById("status");
+
+        async function playSound(soundName) {
+            try {
+                await engine.init();
+                engine.play(soundName);
+                status.textContent = `Played: ${soundName}`;
+            } catch (error) {
+                status.textContent = `Error: ${error.message}`;
+            }
+        }
+
+        document.getElementById("test-kick").addEventListener("click", () => {
+            playSound("kick");
+        });
+
+        document.getElementById("test-snare").addEventListener("click", () => {
+            playSound("snare");
+        });
+
+        document.getElementById("test-polyphony").addEventListener("click", async () => {
+            try {
+                await engine.init();
+                engine.play("kick");
+                engine.play("snare");
+                engine.play("closed-hihat");
+                status.textContent = "Triggered kick, snare, and hi-hat together.";
+            } catch (error) {
+                status.textContent = `Error: ${error.message}`;
+            }
+        });
+    </script>
+</body>
+</html>
