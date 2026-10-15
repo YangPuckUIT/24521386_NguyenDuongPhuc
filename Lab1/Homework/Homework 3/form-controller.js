@@ -66,26 +66,42 @@ const FormController = (() => {
         }
 
         async function handleSubmit(event) {
-            event.preventDefault();
+    event.preventDefault();
 
-            if (state === STATES.SUBMITTING) {
-                return;
-            }
+    if (state === STATES.SUBMITTING) {
+        return;
+    }
 
-            if (!form.reportValidity()) {
-                return;
-            }
+    if (!form.reportValidity()) {
+        return;
+    }
 
-            transition(STATES.SUBMITTING);
+    const sanitizedMessage = input.value.trim();
 
-            try {
-                await onSubmit(input.value);
-                transition(STATES.SUCCESS);
-            } catch (error) {
-                console.error("Form submission failed:", error);
-                transition(STATES.ERROR);
-            }
-        }
+    if (!sanitizedMessage) {
+        input.setCustomValidity("Please enter a non-empty message.");
+        input.reportValidity();
+        input.setCustomValidity("");
+        return;
+    }
+
+    if (sanitizedMessage.length > 200) {
+        input.setCustomValidity("Message must be 200 characters or fewer.");
+        input.reportValidity();
+        input.setCustomValidity("");
+        return;
+    }
+
+    transition(STATES.SUBMITTING);
+
+    try {
+        await onSubmit(sanitizedMessage);
+        transition(STATES.SUCCESS);
+    } catch (error) {
+        console.error("Form submission failed:", error);
+        transition(STATES.ERROR);
+    }
+}
 
         form.addEventListener("submit", handleSubmit);
 

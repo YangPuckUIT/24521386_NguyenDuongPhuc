@@ -155,8 +155,82 @@ async function runTests() {
         fixture.form.remove();
     });
 
+    await testInputSanitization();
     summary.textContent = `Results: ${passed} passed, ${failed} failed.`;
     console.log(`Form controller tests: ${passed} passed, ${failed} failed.`);
 }
+
+async function testInputSanitization() {
+    await runTest("Rejects a message containing only whitespace", async () => {
+        const fixture = createFixture(async () => {
+            throw new Error("Callback should not run");
+        });
+
+        fixture.input.value = "   ";
+        fixture.form.requestSubmit();
+        await wait(0);
+
+        assertEqual(fixture.controller.getState(), "idle");
+
+        fixture.controller.destroy();
+        fixture.form.remove();
+    });
+
+    await runTest("Trims whitespace before submission", async () => {
+        let receivedMessage = null;
+
+        const fixture = createFixture(async (message) => {
+            receivedMessage = message;
+        });
+
+        fixture.input.value = "  Hello HW3  ";
+        fixture.form.requestSubmit();
+        await wait(0);
+
+        assertEqual(receivedMessage, "Hello HW3");
+        assertEqual(fixture.controller.getState(), "success");
+
+        fixture.controller.destroy();
+        fixture.form.remove();
+    });
+
+    await runTest("Does not execute HTML-like input as markup", async () => {
+        let receivedMessage = null;
+
+        const fixture = createFixture(async (message) => {
+            receivedMessage = message;
+        });
+
+        const payload = '<img src=x onerror="alert(1)">';
+        fixture.input.value = payload;
+        fixture.form.requestSubmit();
+        await wait(0);
+
+        assertEqual(receivedMessage, payload);
+        assertEqual(fixture.status.querySelector("img"), null);
+        assertEqual(fixture.controller.getState(), "success");
+
+        fixture.controller.destroy();
+        fixture.form.remove();
+    });
+    await runTest("Rejects a message longer than 200 characters", async () => {
+        let callbackCalled = false;
+
+        const fixture = createFixture(async () => {
+            callbackCalled = true;
+        });
+
+        fixture.input.value = "a".repeat(201);
+        fixture.form.requestSubmit();
+        await wait(0);
+
+        assertEqual(callbackCalled, false);
+        assertEqual(fixture.controller.getState(), "idle");
+
+        fixture.controller.destroy();
+        fixture.form.remove();
+    });
+}
+
 
 runTests();
