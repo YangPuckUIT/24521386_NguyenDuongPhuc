@@ -116,14 +116,46 @@ The application allows users to play drum sounds using keyboard keys. It must su
 
 **Time limit:** Three minutes.
 
-## 6. Final Verification
+## 6. Implementation and Verification Status
 
-- [ ] HTML contract committed before JavaScript.
-- [ ] Audio engine supports overlapping sounds.
-- [ ] Keyboard controller reads mappings from HTML.
-- [ ] Repeated keydown events are ignored.
-- [ ] Beat recorder stores timestamped events in FIFO order.
-- [ ] Key remapping does not require modifying the audio engine.
-- [ ] All components work together.
-- [ ] Git history shows separate milestones.
-- [ ] Live defense completed within three minutes.
+### 6.1 Implementation Status
+
+- [x] M0: Define architecture, milestones, and acceptance criteria.
+- [x] M1: Define the drum kit HTML contract using `data-key` and `data-sound`.
+- [x] M2: Implement the independent polyphonic audio engine.
+- [x] M3: Implement configurable keyboard input and prevent repeated keydown events.
+- [x] M4: Implement the FIFO beat recorder with timestamps.
+- [ ] M5: Complete final browser verification and review the repository.
+
+### 6.2 Verification Results
+
+**JavaScript syntax checks**
+
+The following files passed `node --check` without reporting syntax errors:
+
+- `audio-engine.js`
+- `keyboard-controller.js`
+- `beat-recorder.js`
+- `main.js`
+
+**Browser verification**
+
+- [x] Audio engine tested using the standalone audio test page.
+- [x] Keyboard input and sound mapping observed working in the browser.
+- [x] Beat recorder observed appending events with key, sound, and timestamp.
+- [x] Verify all six key bindings: A, S, D, H, J, K.
+- [x] Verify holding a key does not cause repeated playback.
+- [x] Verify overlapping playback with rapid inputs.
+- [x] Confirm no JavaScript errors in the browser console.
+
+### 6.3 Git Milestone History
+
+- M0: `docs(hw2): define drum kit architecture and milestones`
+- M1: `feat(hw2): define drum kit HTML contract`
+- M2: `feat(hw2): implement polyphonic audio engine`
+- M3: `feat(hw2): implement configurable keyboard controller`
+- M4: `feat(hw2): implement FIFO beat recorder`
+
+### 6.4 Remaining Work
+
+Complete the unchecked browser verification items, review the test page, and confirm the final Git status before marking M5 as complete.
