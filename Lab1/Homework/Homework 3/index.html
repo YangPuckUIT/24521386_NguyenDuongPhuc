@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta
+        name="description"
+        content="A resilient landing page with a UTC countdown and a secure form."
+    >
+    <title>Resilient Landing Page</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="countdown.js" defer></script>
+    <script src="form-controller.js" defer></script>
+    <script src="main.js" defer></script>
+</head>
+<body>
+    <header class="site-header">
+        <h1>Resilient Landing Page</h1>
+        <p>A practical demonstration of reliable browser interactions.</p>
+    </header>
+
+    <main>
+        <section class="countdown-section" aria-labelledby="countdown-title">
+            <h2 id="countdown-title">Countdown</h2>
+            <p>Time remaining until the configured UTC deadline:</p>
+            <p id="countdown" role="timer" aria-live="off">Loading countdown...</p>
+            <p id="countdown-status" role="status" aria-live="polite"></p>
+        </section>
+
+        <section class="form-section" aria-labelledby="form-title">
+            <h2 id="form-title">Test Form</h2>
+
+            <form id="test-form">
+                <div class="form-field">
+                    <label for="message">Message</label>
+                    <input
+                        id="message"
+                        name="message"
+                        type="text"
+                        maxlength="200"
+                        required
+                        autocomplete="off"
+                    >
+                </div>
+
+                <button id="submit-button" type="submit">Submit</button>
+
+                <p id="form-status" role="status" aria-live="polite"></p>
+            </form>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <p>HW3 - Resilient Landing Page</p>
+    </footer>
+</body>
+</html>
