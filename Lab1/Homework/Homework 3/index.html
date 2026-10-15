@@ -10,7 +10,6 @@
     <title>Resilient Landing Page</title>
     <link rel="stylesheet" href="styles.css">
     <script src="countdown.js" defer></script>
-    <script src="form-controller.js" defer></script>
     <script src="main.js" defer></script>
 </head>
 <body>
@@ -23,7 +22,14 @@
         <section class="countdown-section" aria-labelledby="countdown-title">
             <h2 id="countdown-title">Countdown</h2>
             <p>Time remaining until the configured UTC deadline:</p>
-            <p id="countdown" role="timer" aria-live="off">Loading countdown...</p>
+            <p
+    id="countdown"
+    data-target="2027-01-01T00:00:00Z"
+    role="timer"
+    aria-live="off"
+>
+    Loading countdown...
+</p>
             <p id="countdown-status" role="status" aria-live="polite"></p>
         </section>
 
