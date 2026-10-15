@@ -1,0 +1,97 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A keyboard-controlled drum kit.">
+    <title>Drum Kit Engine</title>
+</head>
+<body>
+    <header>
+        <h1>Drum Kit Engine</h1>
+        <p>Press a key or select a drum pad to play a sound.</p>
+    </header>
+
+    <main>
+        <section aria-labelledby="drum-kit-title">
+            <h2 id="drum-kit-title">Drum Pads</h2>
+
+            <div class="drum-kit">
+                <button
+                    type="button"
+                    class="drum-pad"
+                    data-key="a"
+                    data-sound="kick"
+                    aria-label="Play Kick drum, key A">
+                    <span>Kick</span>
+                    <kbd>A</kbd>
+                </button>
+
+                <button
+                    type="button"
+                    class="drum-pad"
+                    data-key="s"
+                    data-sound="snare"
+                    aria-label="Play Snare drum, key S">
+                    <span>Snare</span>
+                    <kbd>S</kbd>
+                </button>
+
+                <button
+                    type="button"
+                    class="drum-pad"
+                    data-key="d"
+                    data-sound="closed-hihat"
+                    aria-label="Play Closed Hi-hat, key D">
+                    <span>Closed Hi-hat</span>
+                    <kbd>D</kbd>
+                </button>
+
+                <button
+                    type="button"
+                    class="drum-pad"
+                    data-key="f"
+                    data-sound="open-hihat"
+                    aria-label="Play Open Hi-hat, key F">
+                    <span>Open Hi-hat</span>
+                    <kbd>F</kbd>
+                </button>
+
+                <button
+                    type="button"
+                    class="drum-pad"
+                    data-key="j"
+                    data-sound="tom"
+                    aria-label="Play Tom drum, key J">
+                    <span>Tom</span>
+                    <kbd>J</kbd>
+                </button>
+
+                <button
+                    type="button"
+                    class="drum-pad"
+                    data-key="k"
+                    data-sound="crash"
+                    aria-label="Play Crash cymbal, key K">
+                    <span>Crash</span>
+                    <kbd>K</kbd>
+                </button>
+            </div>
+        </section>
+
+        <section aria-labelledby="recorder-title">
+            <h2 id="recorder-title">Beat Recorder</h2>
+            <p id="recorder-status" role="status" aria-live="polite">
+                Recording is ready.
+            </p>
+            <ol id="beat-list" aria-label="Recorded drum events"></ol>
+        </section>
+    </main>
+
+    <footer>
+        <p>HW2 — Drum Kit Engine</p>
+    </footer>
+</body>
+</html>
+```
