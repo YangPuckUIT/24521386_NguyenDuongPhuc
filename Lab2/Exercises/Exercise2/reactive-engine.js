@@ -75,12 +75,18 @@ function handleRootClick(event) {
 
   const action = target.dataset.action;
 
-  if (action === "add-task") {
-    delegatedRoot.dispatchEvent(
-      new CustomEvent("task-action", {
-        bubbles: true,
-        detail: { action }
-      })
-    );
+  if (!action) {
+    return;
   }
+
+  delegatedRoot.dispatchEvent(
+    new CustomEvent("task-action", {
+      bubbles: true,
+      detail: {
+        action,
+        taskId: target.dataset.taskId,
+        filter: target.dataset.filter
+      }
+    })
+  );
 }

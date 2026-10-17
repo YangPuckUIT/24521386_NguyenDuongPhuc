@@ -5,6 +5,13 @@ import {
   setRenderFunction
 } from "./reactive-engine.js";
 
+import {
+  useState,
+  resetCursor,
+  setRenderFunction,
+  attachRootEventDelegation
+} from "./reactive-engine.js";
+
 let renderCount = 0;
 
 function TestApp() {
