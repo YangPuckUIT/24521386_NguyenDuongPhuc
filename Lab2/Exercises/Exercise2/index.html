@@ -1,0 +1,212 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reactive Task Manager</title>
+  <style>
+    body {
+      max-width: 640px;
+      margin: 40px auto;
+      padding: 0 16px;
+      font-family: Arial, sans-serif;
+      color: #222;
+    }
+
+    .task-form, .filters {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .task-form input {
+      flex: 1;
+      min-width: 0;
+      padding: 10px;
+    }
+
+    button {
+      padding: 9px 12px;
+      cursor: pointer;
+    }
+
+    .task-list {
+      padding: 0;
+      list-style: none;
+    }
+
+    .task-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 0;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .task-title {
+      flex: 1;
+    }
+
+    .completed {
+      color: #777;
+      text-decoration: line-through;
+    }
+
+    #status {
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <main id="root">
+    <p>Loading tasks...</p>
+  </main>
+
+  <script type="module">
+    import {
+      useState,
+      resetCursor,
+      setRenderFunction,
+      attachRootEventDelegation
+    } from "./reactive-engine.js";
+
+    const root = document.querySelector("#root");
+
+    let setTasksState;
+    let setFilterState;
+    let nextTaskId = 3;
+
+    function escapeHTML(value) {
+      return String(value).replace(/[&<>"']/g, char => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#39;"
+      })[char]);
+    }
+
+    function TaskApp() {
+      resetCursor();
+
+      const [tasks, setTasks] = useState([
+        { id: 1, title: "Review PR", completed: false },
+        { id: 2, title: "Verify AST", completed: false }
+      ]);
+
+      const [filter, setFilter] = useState("ALL");
+
+      // Keep the current setters available to the event handler.
+      setTasksState = setTasks;
+      setFilterState = setFilter;
+
+      const visibleTasks = tasks.filter(task => {
+        if (filter === "ACTIVE") return !task.completed;
+        if (filter === "COMPLETED") return task.completed;
+        return true;
+      });
+
+      root.innerHTML = `
+        <header>
+          <h1>Reactive Task Manager</h1>
+          <p>Tasks: ${tasks.length} |
+             Active: ${tasks.filter(task => !task.completed).length}</p>
+        </header>
+
+        <div class="task-form">
+          <input id="task-input" placeholder="Enter a task..."
+                 aria-label="New task">
+          <button type="button" data-action="add-task">Add Task</button>
+        </div>
+
+        <nav class="filters" aria-label="Task filters">
+          ${["ALL", "ACTIVE", "COMPLETED"].map(option => `
+            <button type="button"
+                    data-action="set-filter"
+                    data-filter="${option}"
+                    aria-pressed="${filter === option}">
+              ${option}
+            </button>
+          `).join("")}
+        </nav>
+
+        <ul class="task-list">
+          ${visibleTasks.map(task => `
+            <li class="task-item">
+              <input type="checkbox"
+                     data-action="toggle-task"
+                     data-task-id="${task.id}"
+                     ${task.completed ? "checked" : ""}
+                     aria-label="Complete ${escapeHTML(task.title)}">
+              <span class="task-title ${task.completed ? "completed" : ""}">
+                ${escapeHTML(task.title)}
+              </span>
+              <button type="button"
+                      data-action="delete-task"
+                      data-task-id="${task.id}">
+                Delete
+              </button>
+            </li>
+          `).join("")}
+        </ul>
+
+        <p id="status" aria-live="polite">
+          Showing ${visibleTasks.length} task(s) — Filter: ${filter}
+        </p>
+      `;
+    }
+
+    // Register the renderer and the single root click listener.
+    setRenderFunction(TaskApp);
+    attachRootEventDelegation(root);
+    root.addEventListener("task-action", event => {
+      const { action, taskId, filter } = event.detail;
+
+      if (action === "add-task") {
+        const input = root.querySelector("#task-input");
+        const title = input.value.trim();
+
+        if (!title) {
+          input.focus();
+          return;
+        }
+
+        setTasksState(previous => [
+          ...previous,
+          {
+            id: nextTaskId++,
+            title,
+            completed: false
+          }
+        ]);
+        return;
+      }
+
+      if (action === "set-filter") {
+        setFilterState(filter);
+        return;
+      }
+
+      if (action === "toggle-task") {
+        const id = Number(taskId);
+        setTasksState(previous => previous.map(task =>
+          task.id === id
+            ? { ...task, completed: !task.completed }
+            : task
+        ));
+        return;
+      }
+
+      if (action === "delete-task") {
+        const id = Number(taskId);
+        setTasksState(previous =>
+          previous.filter(task => task.id !== id)
+        );
+      }
+    });
+
+    TaskApp();
+  </script>
+</body>
+</html>
