@@ -39,3 +39,48 @@ export function useState(initialValue) {
 
   return [stateStore[currentIndex], setState];
 }
+
+/**
+ * Milestone 3: Root Event Delegation
+ */
+
+let delegatedRoot = null;
+
+export function attachRootEventDelegation(root) {
+  if (!root) {
+    throw new Error("A root DOM element is required.");
+  }
+
+  if (delegatedRoot === root) {
+    return;
+  }
+
+  if (delegatedRoot) {
+    delegatedRoot.removeEventListener("click", handleRootClick);
+  }
+
+  delegatedRoot = root;
+  delegatedRoot.addEventListener("click", handleRootClick);
+}
+
+function handleRootClick(event) {
+  const target =
+    event.target instanceof Element
+      ? event.target.closest("[data-action]")
+      : null;
+
+  if (!target || !delegatedRoot.contains(target)) {
+    return;
+  }
+
+  const action = target.dataset.action;
+
+  if (action === "add-task") {
+    delegatedRoot.dispatchEvent(
+      new CustomEvent("task-action", {
+        bubbles: true,
+        detail: { action }
+      })
+    );
+  }
+}
