@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resilient Data Feed</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <main>
+    <header>
+      <h1>Data Feed</h1>
+      <p>Resilient four-state data component</p>
+    </header>
+
+    <div>
+      <button id="load-button" type="button">Load Data</button>
+      <button id="fail-button" type="button">Simulate Error</button>
+    </div>
+
+    <p id="status" role="status" aria-live="polite">Ready to load data.</p>
+    <section id="feed" aria-label="Feed content"></section>
+  </main>
+
+  <script type="module">
+    import { createStateMachine } from "./state-machine.js";
+
+    const feed = document.querySelector("#feed");
+    const status = document.querySelector("#status");
+    const loadButton = document.querySelector("#load-button");
+    const failButton = document.querySelector("#fail-button");
+
+    let shouldFail = false;
+
+    function escapeHTML(value) {
+      return String(value).replace(/[&<>"']/g, char => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#39;"
+      })[char]);
+    }
+
+    function render(state) {
+      loadButton.disabled = state.status === "LOADING";
+      failButton.disabled = state.status === "LOADING";
+
+      status.textContent = `Current state: ${state.status}`;
+
+      if (state.status === "IDLE") {
+        feed.innerHTML = "<p>Click Load Data to fetch feed items.</p>";
+        return;
+      }
+
+      if (state.status === "LOADING") {
+        feed.innerHTML = `
+          <article class="feed-item" aria-label="Loading item">
+            <div class="skeleton title"></div>
+            <div class="skeleton"></div>
+            <div class="skeleton short"></div>
+          </article>
+          <article class="feed-item" aria-label="Loading item">
+            <div class="skeleton title"></div>
+            <div class="skeleton"></div>
+            <div class="skeleton short"></div>
+          </article>
+        `;
+        return;
+      }
+
+      if (state.status === "SUCCESS") {
+        feed.innerHTML = `
+          <ul class="feed-list">
+            ${state.data.map(item => `
+              <li class="feed-item">
+                <h2>${escapeHTML(item.title)}</h2>
+                <p>${escapeHTML(item.description)}</p>
+              </li>
+            `).join("")}
+          </ul>
+        `;
+        return;
+      }
+
+      if (state.status === "ERROR") {
+        feed.innerHTML = `
+          <div class="error-panel" role="alert">
+            <h2>Unable to load data</h2>
+            <p>${escapeHTML(state.error)}</p>
+            <button type="button" data-action="retry">
+              Retry Connection
+            </button>
+          </div>
+        `;
+      }
+    }
+
+    const machine = createStateMachine(render);
+
+    // Simulate an asynchronous API request.
+    function fetchFeed() {
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          if (shouldFail) {
+            reject(new Error("Connection failed. Please try again."));
+            return;
+          }
+
+          resolve([
+            {
+              id: 1,
+              title: "Mini React State Machine",
+              description: "Manage UI state through explicit transitions."
+            },
+            {
+              id: 2,
+              title: "Async Data Handling",
+              description: "Render data after the request succeeds."
+            },
+            {
+              id: 3,
+              title: "Resilient UI",
+              description: "Recover from errors using a retry action."
+            }
+          ]);
+        }, 1200);
+      });
+    }
+
+    function loadData() {
+      machine.load(fetchFeed);
+    }
+
+    loadButton.addEventListener("click", () => {
+      shouldFail = false;
+      loadData();
+    });
+
+    failButton.addEventListener("click", () => {
+      shouldFail = true;
+      loadData();
+    });
+
+    feed.addEventListener("click", event => {
+      const button = event.target.closest('[data-action="retry"]');
+
+      if (button) {
+        loadData();
+      }
+    });
+
+    render(machine.getState());
+  </script>
+</body>
+</html>
