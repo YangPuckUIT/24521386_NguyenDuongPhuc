@@ -1,15 +1,41 @@
 /**
  * Exercise 2 - Reactive State Machine
- * Milestone 1: State Store and Reset Cursor
+ * Milestones 1 and 2: State Store and Reactive useState
  */
 
 const stateStore = [];
 let stateCursor = 0;
+let rerenderApp = null;
 
-/**
- * Reset the cursor before each application render.
- * This ensures each useState call accesses the correct slot.
- */
 export function resetCursor() {
   stateCursor = 0;
+}
+
+export function setRenderFunction(renderFunction) {
+  rerenderApp = renderFunction;
+}
+
+export function useState(initialValue) {
+  const currentIndex = stateCursor;
+
+  if (stateStore.length === currentIndex) {
+    stateStore.push(initialValue);
+  }
+
+  stateCursor++;
+
+  function setState(newValue) {
+    const previousValue = stateStore[currentIndex];
+
+    stateStore[currentIndex] =
+      typeof newValue === "function"
+        ? newValue(previousValue)
+        : newValue;
+
+    if (rerenderApp) {
+      rerenderApp();
+    }
+  }
+
+  return [stateStore[currentIndex], setState];
 }
