@@ -33,3 +33,13 @@ console.assert(
   root.querySelector('button') !== null,
   'Mount Failed'
 );
+
+const xssTest = renderToDOM(
+  createElement('p', null, '<script>alert(1)</script>')
+);
+
+console.log('XSS Text:', xssTest.textContent);
+console.log(
+  'Has real script:',
+  xssTest.querySelector('script') !== null
+);
