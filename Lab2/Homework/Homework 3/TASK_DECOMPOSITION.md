@@ -35,10 +35,10 @@ The project focuses on accurate countdown timing, inventory reservation, lock ex
 **Commit:** `feat(hw3): implement anti-drift countdown timer`
 
 ### M3 — Inventory State Machine
-- [ ] Define reservation states
-- [ ] Implement valid transitions
-- [ ] Reject invalid transitions
-- [ ] Prevent negative inventory
+- [x] Define reservation states
+- [x] Implement valid transitions
+- [x] Reject invalid transitions
+- [x] Prevent negative inventory
 
 **Commit:** `feat(hw3): implement inventory state machine`
 

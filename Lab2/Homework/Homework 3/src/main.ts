@@ -225,3 +225,9 @@ const stopCountdown = createAntiDriftTimer(
 );
 
 window.addEventListener('pagehide', stopCountdown, { once: true });
+
+if (import.meta.env.DEV) {
+  import('./tests/inventory-test').then(({ runInventoryTests }) => {
+    runInventoryTests();
+  });
+}
