@@ -13,16 +13,16 @@ The project focuses on accurate countdown timing, inventory reservation, lock ex
 - [x] Clean default Vite files
 - [x] Create initial application interface
 - [x] Configure project structure
-- [ ] Verify production build
-- [ ] Complete initial documentation
+- [x] Verify production build
+- [x] Complete initial documentation
 
 **Commit:** `chore(hw3): initialize Vite TypeScript project`
 
 ### M1 — Flash Sale Interface
-- [ ] Create responsive product layout
-- [ ] Display product prices and discounts
-- [ ] Display available stock
-- [ ] Add countdown and purchase controls
+- [x] Create responsive product layout
+- [x] Display product prices and discounts
+- [x] Display available stock
+- [x] Add countdown and purchase controls
 
 **Commit:** `feat(hw3): build flash sale interface`
 
