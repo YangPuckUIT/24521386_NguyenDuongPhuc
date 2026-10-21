@@ -59,10 +59,11 @@ The project focuses on accurate countdown timing, inventory reservation, lock ex
 **Commit:** `feat(hw3): implement checkout lifecycle`
 
 ### M6 — Concurrency Testing
-- [ ] Simulate concurrent purchase attempts
-- [ ] Verify overselling prevention
-- [ ] Test reservation expiry
-- [ ] Test checkout race conditions
+- [x] Simulate 100 concurrent reservation attempts
+- [x] Verify overselling prevention
+- [x] Test duplicate checkout
+- [x] Test checkout/cancel race
+- [x] Validate inventory invariants
 
 **Commit:** `test(hw3): verify concurrent inventory operations`
 

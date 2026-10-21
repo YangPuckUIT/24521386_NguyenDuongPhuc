@@ -232,10 +232,12 @@ if (import.meta.env.DEV) {
     import('./tests/inventory-test'),
     import('./tests/reservation-expiry-test'),
     import('./tests/checkout-test'),
-  ]).then(([inventory, expiry, checkout]) => {
+    import('./tests/concurrency-test'),
+  ]).then(async ([inventory, expiry, checkout, concurrency]) => {
     inventory.runInventoryTests();
     expiry.runReservationExpiryTests();
     checkout.runCheckoutTests();
+    await concurrency.runConcurrencyTests();
   });
 }
 
