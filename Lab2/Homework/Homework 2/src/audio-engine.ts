@@ -4,18 +4,17 @@ export class AudioEngine {
   private analyser: AnalyserNode;
   private source: AudioBufferSourceNode | null = null;
 
+  // Callback khi bài hát kết thúc tự nhiên
+  private onTrackEnded: (() => void) | null = null;
+
   constructor() {
     this.audioContext = new AudioContext();
 
     this.analyser = this.audioContext.createAnalyser();
 
-    // FFT size theo yêu cầu bài tập
-    this.analyser.fftSize = 256;
-
-    // Làm chuyển động của visualizer mượt hơn
+    this.analyser.fftSize = 2048;
     this.analyser.smoothingTimeConstant = 0.8;
 
-    // Kết nối analyser với loa
     this.analyser.connect(this.audioContext.destination);
   }
 
@@ -25,6 +24,11 @@ export class AudioEngine {
 
   getAnalyser(): AnalyserNode {
     return this.analyser;
+  }
+
+  // Cho phép AudioApp nhận thông báo khi bài hát kết thúc
+  setOnTrackEnded(callback: (() => void) | null): void {
+    this.onTrackEnded = callback;
   }
 
   async play(buffer: AudioBuffer): Promise<void> {
@@ -42,8 +46,13 @@ export class AudioEngine {
     source.onended = () => {
       source.disconnect();
 
+      // Chỉ xử lý khi đây vẫn là source hiện tại
       if (this.source === source) {
         this.source = null;
+
+        console.log('[AUDIO] Track ended naturally');
+
+        this.onTrackEnded?.();
       }
     };
 
@@ -59,7 +68,9 @@ export class AudioEngine {
     const source = this.source;
     this.source = null;
 
+    // Không gọi callback chuyển bài khi Stop thủ công
     source.onended = null;
+
     source.stop();
     source.disconnect();
 
@@ -78,6 +89,8 @@ export class AudioEngine {
 
   async dispose(): Promise<void> {
     this.stop();
+    this.onTrackEnded = null;
+
     this.analyser.disconnect();
 
     if (this.audioContext.state !== 'closed') {

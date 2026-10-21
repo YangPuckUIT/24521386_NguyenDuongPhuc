@@ -1,69 +1,149 @@
-// import { testAudioEngine } from './audio-engine-test';
-import './style.css'
-import heroImg from './assets/hero.png'
-import typescriptLogo from './assets/typescript.svg'
-import viteLogo from './assets/vite.svg'
-import { setupCounter } from './counter.ts'
-import { testAudioVisualizer } from './audio-visualizer-test';
-// import { testAudioCancellation } from './audio-cancel-test';
+import './style.css';
 
-document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
-<section id="center">
-  <div class="hero">
-    <img src="${heroImg}" class="base" width="170" height="179">
-    <img src="${typescriptLogo}" class="framework" alt="TypeScript logo"/>
-    <img src="${viteLogo}" class="vite" alt="Vite logo" />
-  </div>
-  <div>
-    <h1>Get started</h1>
-    <p>Edit <code>src/main.ts</code> and save to test <code>HMR</code></p>
-  </div>
-  <button id="counter" type="button" class="counter"></button>
-</section>
+import { initializeAudioApp } from './audio-app';
 
-<div class="ticks"></div>
+const app = document.querySelector<HTMLDivElement>('#app');
 
-<section id="next-steps">
-  <div id="docs">
-    <svg class="icon" role="presentation" aria-hidden="true"><use href="/icons.svg#documentation-icon"></use></svg>
-    <h2>Documentation</h2>
-    <p>Your questions, answered</p>
-    <ul>
-      <li>
-        <a href="https://vite.dev/" target="_blank">
-          <img class="logo" src="${viteLogo}" alt="" />
-          Explore Vite
-        </a>
-      </li>
-      <li>
-        <a href="https://www.typescriptlang.org" target="_blank">
-          <img class="button-icon" src="${typescriptLogo}" alt="">
-          Learn more
-        </a>
-      </li>
-    </ul>
-  </div>
-  <div id="social">
-    <svg class="icon" role="presentation" aria-hidden="true"><use href="/icons.svg#social-icon"></use></svg>
-    <h2>Connect with us</h2>
-    <p>Join the Vite community</p>
-    <ul>
-      <li><a href="https://github.com/vitejs/vite" target="_blank"><svg class="button-icon" role="presentation" aria-hidden="true"><use href="/icons.svg#github-icon"></use></svg>GitHub</a></li>
-      <li><a href="https://chat.vite.dev/" target="_blank"><svg class="button-icon" role="presentation" aria-hidden="true"><use href="/icons.svg#discord-icon"></use></svg>Discord</a></li>
-      <li><a href="https://x.com/vite_js" target="_blank"><svg class="button-icon" role="presentation" aria-hidden="true"><use href="/icons.svg#x-icon"></use></svg>X.com</a></li>
-      <li><a href="https://bsky.app/profile/vite.dev" target="_blank"><svg class="button-icon" role="presentation" aria-hidden="true"><use href="/icons.svg#bluesky-icon"></use></svg>Bluesky</a></li>
-    </ul>
-  </div>
-</section>
+if (!app) {
+  throw new Error('App root not found');
+}
 
-<div class="ticks"></div>
-<section id="spacer"></section>
-`
+app.innerHTML = `
+  <main class="workspace">
+    <header class="topbar">
+      <a class="brand" href="/" aria-label="FREQ ROOM home">
+        FREQ<span class="brand-divider">/</span>ROOM
+      </a>
 
-setupCounter(document.querySelector<HTMLButtonElement>('#counter')!)
+      <span class="topbar-meta">AUDIO WORKSPACE — 01</span>
+    </header>
 
-// void testAudioQueue();
-// void testAudioCancellation();
-// void testAudioEngine();
+    <section class="intro" aria-labelledby="page-title">
+      <p class="section-kicker">AN AUDIO EXPERIMENT</p>
 
-testAudioVisualizer();
+      <h1 id="page-title">Sound, in motion.</h1>
+
+      <p class="intro-description">
+        A space to see what you hear.
+      </p>
+    </section>
+
+    <section class="workspace-panel" aria-labelledby="controls-title">
+      <div class="panel-heading">
+        <h2 id="controls-title">
+          <span class="section-number">01 /</span>
+          Playback
+        </h2>
+
+        <span class="panel-meta" id="playback-state">
+          STANDBY
+        </span>
+      </div>
+
+      <div class="file-picker">
+        <label for="audio-files">Choose audio files</label>
+
+        <p>
+          Add one or more tracks to your listening session.
+        </p>
+
+        <input
+          type="file"
+          id="audio-files"
+          accept="audio/*"
+          multiple
+        />
+      </div>
+
+      <div class="playback-controls">
+        <button
+          id="play-button"
+          class="button button-primary"
+          type="button"
+          disabled
+        >
+          PLAY
+        </button>
+
+        <button
+          id="stop-button"
+          class="button button-secondary"
+          type="button"
+          disabled
+        >
+          STOP
+        </button>
+
+        <button
+          id="cancel-button"
+          class="button button-secondary"
+          type="button"
+          disabled
+        >
+          CLEAR QUEUE
+        </button>
+      </div>
+
+      <div class="status-line">
+        <span class="status-indicator" aria-hidden="true"></span>
+
+        <p id="audio-status" role="status" aria-live="polite">
+          Ready. Select audio files to begin.
+        </p>
+      </div>
+    </section>
+
+    <section class="workspace-panel" aria-labelledby="visualizer-title">
+      <div class="panel-heading">
+        <h2 id="visualizer-title">
+          <span class="section-number">02 /</span>
+          Spectrum
+        </h2>
+
+        <span class="panel-meta">256 FFT</span>
+      </div>
+
+      <div class="spectrum-container">
+        <canvas
+          id="audio-canvas"
+          width="800"
+          height="250"
+          role="img"
+          aria-label="Audio frequency spectrum visualizer"
+        ></canvas>
+      </div>
+
+      <div class="spectrum-labels" aria-hidden="true">
+        <span>LOW</span>
+        <span>MID</span>
+        <span>HIGH</span>
+      </div>
+    </section>
+
+    <section class="workspace-panel" aria-labelledby="queue-title">
+      <div class="panel-heading">
+        <h2 id="queue-title">
+          <span class="section-number">03 /</span>
+          Up next
+        </h2>
+
+        <span class="panel-meta" id="queue-count">
+          00 PENDING
+        </span>
+      </div>
+
+      <ol id="queue-list" class="queue-list">
+        <li class="queue-empty">
+          Your queue is empty.
+        </li>
+      </ol>
+    </section>
+
+    <footer class="footer">
+      <span>BUILT FOR THE FREQUENCIES BETWEEN</span>
+      <span>2026</span>
+    </footer>
+  </main>
+`;
+
+initializeAudioApp();
