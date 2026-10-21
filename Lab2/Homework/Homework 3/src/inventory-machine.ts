@@ -1,7 +1,8 @@
 export type ReservationStatus =
   | 'RESERVED'
   | 'RELEASED'
-  | 'PURCHASED';
+  | 'PURCHASED'
+  | 'EXPIRED';
 
 export type InventorySnapshot = {
   totalStock: number;
@@ -14,15 +15,20 @@ export type Reservation = {
   id: string;
   quantity: number;
   status: ReservationStatus;
+  createdAt: number;
+  expiresAt: number;
 };
 
 export type InventoryMachine = {
-  reserve: (quantity: number) => Reservation | null;
+  reserve: (quantity: number, lockDurationMs?: number) => Reservation | null;
   release: (reservationId: string) => boolean;
   purchase: (reservationId: string) => boolean;
+  expireReservations: () => number;
   getSnapshot: () => InventorySnapshot;
   getReservation: (reservationId: string) => Reservation | null;
 };
+
+const DEFAULT_LOCK_DURATION_MS = 30_000;
 
 export function createInventoryMachine(
   initialStock: number
@@ -40,7 +46,28 @@ export function createInventoryMachine(
 
   const reservations = new Map<string, Reservation>();
 
+  function expireReservations(): number {
+    const now = Date.now();
+    let expiredCount = 0;
+
+    for (const reservation of reservations.values()) {
+      if (
+        reservation.status === 'RESERVED' &&
+        now >= reservation.expiresAt
+      ) {
+        reservation.status = 'EXPIRED';
+        reserved -= reservation.quantity;
+        available += reservation.quantity;
+        expiredCount++;
+      }
+    }
+
+    return expiredCount;
+  }
+
   function getSnapshot(): InventorySnapshot {
+    expireReservations();
+
     return {
       totalStock: initialStock,
       available,
@@ -52,13 +79,34 @@ export function createInventoryMachine(
   function getReservation(
     reservationId: string
   ): Reservation | null {
+    expireReservations();
+
     const reservation = reservations.get(reservationId);
 
     return reservation ? { ...reservation } : null;
   }
 
-  function reserve(quantity: number): Reservation | null {
+  function reserve(
+    quantity: number,
+    lockDurationMs = DEFAULT_LOCK_DURATION_MS
+  ): Reservation | null {
+    expireReservations();
+
     if (!Number.isSafeInteger(quantity) || quantity <= 0) {
+      return null;
+    }
+
+    if (
+      !Number.isFinite(lockDurationMs) ||
+      lockDurationMs <= 0
+    ) {
+      return null;
+    }
+
+    const now = Date.now();
+    const expiresAt = now + lockDurationMs;
+
+    if (!Number.isSafeInteger(expiresAt)) {
       return null;
     }
 
@@ -70,6 +118,8 @@ export function createInventoryMachine(
       id: `reservation-${nextReservationId++}`,
       quantity,
       status: 'RESERVED',
+      createdAt: now,
+      expiresAt,
     };
 
     available -= quantity;
@@ -81,6 +131,8 @@ export function createInventoryMachine(
   }
 
   function release(reservationId: string): boolean {
+    expireReservations();
+
     const reservation = reservations.get(reservationId);
 
     if (!reservation || reservation.status !== 'RESERVED') {
@@ -88,7 +140,6 @@ export function createInventoryMachine(
     }
 
     reservation.status = 'RELEASED';
-
     reserved -= reservation.quantity;
     available += reservation.quantity;
 
@@ -96,6 +147,8 @@ export function createInventoryMachine(
   }
 
   function purchase(reservationId: string): boolean {
+    expireReservations();
+
     const reservation = reservations.get(reservationId);
 
     if (!reservation || reservation.status !== 'RESERVED') {
@@ -103,7 +156,6 @@ export function createInventoryMachine(
     }
 
     reservation.status = 'PURCHASED';
-
     reserved -= reservation.quantity;
     purchased += reservation.quantity;
 
@@ -114,6 +166,7 @@ export function createInventoryMachine(
     reserve,
     release,
     purchase,
+    expireReservations,
     getSnapshot,
     getReservation,
   };

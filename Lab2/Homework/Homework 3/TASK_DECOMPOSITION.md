@@ -43,10 +43,10 @@ The project focuses on accurate countdown timing, inventory reservation, lock ex
 **Commit:** `feat(hw3): implement inventory state machine`
 
 ### M4 — Inventory Reservation
-- [ ] Implement temporary inventory locks
-- [ ] Track reservation expiration
-- [ ] Release expired reservations
-- [ ] Prevent duplicate releases
+- [x] Implement temporary inventory locks
+- [x] Track reservation expiration
+- [x] Release expired reservations
+- [x] Prevent duplicate releases
 
 **Commit:** `feat(hw3): implement reservation lock expiry`
 
