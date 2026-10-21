@@ -358,3 +358,30 @@ tbody td:nth-child(4) {
     justify-content: space-between;
   }
 }
+
+
+/* M3 — Keyboard navigation and selection */
+
+table[role="grid"] td:focus-visible {
+  outline: 3px solid #176c43;
+  outline-offset: -3px;
+  background: #e5eee4;
+  position: relative;
+  z-index: 1;
+}
+
+table[role="grid"] tbody tr.is-selected {
+  background: #dcebdd;
+}
+
+table[role="grid"] tbody tr.is-selected:hover {
+  background: #d1e5d3;
+}
+
+table[role="grid"] tbody tr.is-selected td:first-child {
+  box-shadow: inset 4px 0 0 #176c43;
+}
+
+table[role="grid"] tbody td {
+  cursor: default;
+}

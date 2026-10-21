@@ -23,10 +23,10 @@
 - [x] Implement pagination
 
 ## M3 — Keyboard Navigation
-- [ ] Arrow key navigation
-- [ ] Enter to select
-- [ ] Space to toggle selection
-- [ ] Manage keyboard focus
+- [x] Arrow key navigation
+- [x] Enter to select
+- [x] Space to toggle selection
+- [x] Manage keyboard focus
 
 ## M4 — WCAG 2.2 AA
 - [ ] Verify color contrast
