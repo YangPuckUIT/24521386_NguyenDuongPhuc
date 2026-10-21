@@ -1,9 +1,10 @@
-import { testAudioEngine } from './audio-engine-test';
+// import { testAudioEngine } from './audio-engine-test';
 import './style.css'
 import heroImg from './assets/hero.png'
 import typescriptLogo from './assets/typescript.svg'
 import viteLogo from './assets/vite.svg'
 import { setupCounter } from './counter.ts'
+import { testAudioVisualizer } from './audio-visualizer-test';
 // import { testAudioCancellation } from './audio-cancel-test';
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
@@ -61,5 +62,8 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
 
 setupCounter(document.querySelector<HTMLButtonElement>('#counter')!)
 
+// void testAudioQueue();
 // void testAudioCancellation();
-void testAudioEngine();
+// void testAudioEngine();
+
+testAudioVisualizer();
