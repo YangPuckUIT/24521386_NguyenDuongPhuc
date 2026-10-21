@@ -27,10 +27,10 @@ The project focuses on accurate countdown timing, inventory reservation, lock ex
 **Commit:** `feat(hw3): build flash sale interface`
 
 ### M2 — Anti-Drift Timer
-- [ ] Implement Date.now()-based countdown
-- [ ] Use requestAnimationFrame
-- [ ] Support timer cancellation
-- [ ] Test countdown accuracy
+- [x] Implement Date.now()-based countdown
+- [x] Use requestAnimationFrame
+- [x] Support timer cancellation
+- [x] Test countdown accuracy
 
 **Commit:** `feat(hw3): implement anti-drift countdown timer`
 

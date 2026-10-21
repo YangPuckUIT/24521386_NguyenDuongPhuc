@@ -1,4 +1,5 @@
 import './style.css';
+import { createAntiDriftTimer } from './anti-drift-timer';
 
 type Product = {
   id: number;
@@ -183,3 +184,44 @@ app.innerHTML = `
     <p>VN Mega Sale 11.11 — E-Commerce Engine Simulation</p>
   </footer>
 `;
+
+const hoursElement = document.querySelector<HTMLElement>('#hours');
+const minutesElement = document.querySelector<HTMLElement>('#minutes');
+const secondsElement = document.querySelector<HTMLElement>('#seconds');
+const millisecondsElement =
+  document.querySelector<HTMLElement>('#milliseconds');
+
+if (
+  !hoursElement ||
+  !minutesElement ||
+  !secondsElement ||
+  !millisecondsElement
+) {
+  throw new Error('Countdown elements not found');
+}
+
+function formatTwoDigits(value: number): string {
+  return String(value).padStart(2, '0');
+}
+
+function updateCountdown(remainingMs: number): void {
+  const hours = Math.floor(remainingMs / 3_600_000);
+  const minutes = Math.floor((remainingMs % 3_600_000) / 60_000);
+  const seconds = Math.floor((remainingMs % 60_000) / 1_000);
+  const milliseconds = remainingMs % 1_000;
+
+  hoursElement!.textContent = formatTwoDigits(hours);
+  minutesElement!.textContent = formatTwoDigits(minutes);
+  secondsElement!.textContent = formatTwoDigits(seconds);
+  millisecondsElement!.textContent =
+    String(milliseconds).padStart(3, '0');
+}
+
+const FLASH_SALE_DURATION_MS = 15 * 60 * 1000;
+
+const stopCountdown = createAntiDriftTimer(
+  FLASH_SALE_DURATION_MS,
+  updateCountdown
+);
+
+window.addEventListener('pagehide', stopCountdown, { once: true });
