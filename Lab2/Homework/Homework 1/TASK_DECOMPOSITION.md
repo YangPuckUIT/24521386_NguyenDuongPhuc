@@ -36,8 +36,8 @@
 - [x] Test responsive layout and browser zoom
 
 ## M5 — Lighthouse & Report
-- [ ] Run Lighthouse Accessibility audit
-- [ ] Run Lighthouse Best Practices audit
-- [ ] Achieve 100/100 in both categories
-- [ ] Capture screenshots
-- [ ] Document testing results
+- [x] Run Lighthouse Accessibility audit
+- [x] Run Lighthouse Best Practices audit
+- [x] Achieve 100/100 in both categories
+- [x] Capture screenshots
+- [x] Document testing results
