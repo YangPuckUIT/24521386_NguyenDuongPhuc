@@ -80,5 +80,21 @@ const status = document.querySelector("#app-status");
 
 grid.mount(container);
 
+const searchInput = document.querySelector("#grid-search");
+const prevButton = document.querySelector("#prev-page");
+const nextButton = document.querySelector("#next-page");
+
+searchInput.addEventListener("input", (event) => {
+  grid.setSearch(event.target.value);
+});
+
+prevButton.addEventListener("click", () => {
+  grid.goToPage(grid.currentPage - 1);
+});
+
+nextButton.addEventListener("click", () => {
+  grid.goToPage(grid.currentPage + 1);
+});
+
 status.textContent =
   `Data Grid loaded successfully. ${students.length} student records.`;

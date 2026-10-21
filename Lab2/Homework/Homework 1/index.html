@@ -29,9 +29,37 @@
         Initializing application...
       </p>
 
-      <section id="data-grid-container"
-               aria-label="Student data grid">
-      </section>
+      <div class="grid-toolbar">
+  <label for="grid-search">Search students</label>
+  <input
+    type="search"
+    id="grid-search"
+    placeholder="Search by name, ID or major..."
+    autocomplete="off"
+  >
+  <p id="result-count" role="status" aria-live="polite"></p>
+</div>
+
+<section
+  id="data-grid-container"
+  aria-label="Student data grid">
+</section>
+
+<nav class="grid-pagination" aria-label="Data grid pagination">
+  <p id="page-info"></p>
+
+  <div class="pagination-actions">
+    <button type="button" id="prev-page">
+      Previous
+    </button>
+
+    <span id="current-page" aria-live="polite"></span>
+
+    <button type="button" id="next-page">
+      Next
+    </button>
+  </div>
+</nav>
     </section>
   </main>
 

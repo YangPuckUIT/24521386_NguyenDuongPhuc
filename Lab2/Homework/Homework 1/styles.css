@@ -202,3 +202,159 @@ tbody td:nth-child(4) {
     animation-duration: 0.01ms !important;
   }
 }
+
+
+/* M2 — Search and data operations */
+
+.grid-toolbar {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 18px;
+  flex-wrap: wrap;
+}
+
+.grid-toolbar label {
+  display: block;
+  width: 100%;
+  margin-bottom: -12px;
+  color: #344b3b;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+#grid-search {
+  width: min(440px, 100%);
+  min-height: 46px;
+  padding: 12px 16px;
+  border: 1px solid #c8d3c8;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #18231e;
+  font: inherit;
+  font-size: 0.875rem;
+}
+
+#grid-search::placeholder {
+  color: #64746a;
+}
+
+#grid-search:focus-visible {
+  border-color: #176c43;
+}
+
+#result-count {
+  margin: 0;
+  padding: 8px 12px;
+  border-radius: 6px;
+  background: #e5eee4;
+  color: #27543a;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+/* Sort buttons */
+
+.sort-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 2px;
+  border: 0;
+  border-radius: 4px;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-weight: 700;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  cursor: pointer;
+}
+
+.sort-button:hover {
+  color: #176c43;
+}
+
+.sort-button span {
+  font-size: 1rem;
+  color: #176c43;
+}
+
+/* Pagination */
+
+.grid-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+#page-info {
+  margin: 0;
+  color: #536358;
+  font-size: 0.875rem;
+}
+
+.pagination-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.pagination-actions button {
+  min-height: 44px;
+  padding: 10px 16px;
+  border: 1px solid #c8d3c8;
+  border-radius: 7px;
+  background: #ffffff;
+  color: #243c2d;
+  font: inherit;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.pagination-actions button:hover:not(:disabled) {
+  background: #e5eee4;
+  border-color: #8da894;
+}
+
+.pagination-actions button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+#current-page {
+  color: #344b3b;
+  font-size: 0.875rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.empty-state {
+  padding: 42px 20px;
+  text-align: center;
+  color: #536358;
+}
+
+@media (max-width: 600px) {
+  .grid-toolbar {
+    align-items: stretch;
+  }
+
+  #grid-search {
+    width: 100%;
+  }
+
+  .grid-pagination {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .pagination-actions {
+    justify-content: space-between;
+  }
+}

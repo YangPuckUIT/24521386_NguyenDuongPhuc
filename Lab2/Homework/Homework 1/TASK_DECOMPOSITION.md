@@ -18,9 +18,9 @@
 - [x] Implement ARIA grid semantics
 
 ## M2 — Data Operations
-- [ ] Implement column sorting
-- [ ] Implement filtering
-- [ ] Implement pagination
+- [x] Implement column sorting
+- [x] Implement filtering
+- [x] Implement pagination
 
 ## M3 — Keyboard Navigation
 - [ ] Arrow key navigation
