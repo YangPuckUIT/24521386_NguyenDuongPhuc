@@ -51,10 +51,10 @@ The project focuses on accurate countdown timing, inventory reservation, lock ex
 **Commit:** `feat(hw3): implement reservation lock expiry`
 
 ### M5 — Checkout Controller
-- [ ] Implement successful checkout
-- [ ] Handle checkout failure
-- [ ] Reject expired reservations
-- [ ] Synchronize inventory state
+- [x] Implement successful checkout
+- [x] Handle checkout failure
+- [x] Reject expired reservations
+- [x] Synchronize inventory state
 
 **Commit:** `feat(hw3): implement checkout lifecycle`
 

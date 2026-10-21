@@ -334,3 +334,73 @@ a {
     padding: 40px 0;
   }
 }
+
+/* M5 — Checkout Modal */
+
+.checkout-modal:not([hidden]) {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: rgba(15, 23, 42, 0.7);
+}
+
+.checkout-modal[hidden] {
+  display: none;
+}
+
+.checkout-panel {
+  width: min(100%, 440px);
+  padding: 32px;
+  border-radius: 16px;
+  background: #ffffff;
+  color: #1f2937;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+}
+
+.checkout-panel h2 {
+  margin-top: 0;
+}
+
+#checkout-time {
+  color: #dc2626;
+  font-weight: 700;
+}
+
+.checkout-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.checkout-actions button {
+  flex: 1;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+#confirm-checkout {
+  background: #16a34a;
+  color: #ffffff;
+}
+
+#cancel-checkout {
+  background: #e5e7eb;
+  color: #1f2937;
+}
+
+.checkout-actions button:focus-visible {
+  outline: 3px solid #2563eb;
+  outline-offset: 3px;
+}
+
+@media (max-width: 400px) {
+  .checkout-actions {
+    flex-direction: column;
+  }
+}

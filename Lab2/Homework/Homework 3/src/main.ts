@@ -1,5 +1,6 @@
 import './style.css';
 import { createAntiDriftTimer } from './anti-drift-timer';
+import { initializeFlashSale } from './flash-sale-app';
 
 type Product = {
   id: number;
@@ -71,7 +72,7 @@ const renderProduct = (product: Product): string => {
   );
 
   return `
-    <article class="product-card">
+    <article class="product-card" data-product-id="${product.id}">
       <div class="product-image" aria-hidden="true">
         <span>${product.emoji}</span>
         <span class="discount-badge">-${discount}%</span>
@@ -89,8 +90,8 @@ const renderProduct = (product: Product): string => {
         </div>
 
         <div class="stock-info">
-          <span>Còn ${product.stock} sản phẩm</span>
-          <span>Đã bán ${soldPercent}%</span>
+          <span class="stock-remaining">Còn ${product.stock} sản phẩm</span>
+          <span class="stock-sold">Đã bán ${soldPercent}%</span>
         </div>
 
         <div
@@ -104,8 +105,8 @@ const renderProduct = (product: Product): string => {
           <div style="width: ${soldPercent}%"></div>
         </div>
 
-        <button class="buy-button" type="button" disabled>
-          Mua ngay
+          <button class="buy-button" type="button">
+            Mua ngay
         </button>
       </div>
     </article>
@@ -230,8 +231,21 @@ if (import.meta.env.DEV) {
   Promise.all([
     import('./tests/inventory-test'),
     import('./tests/reservation-expiry-test'),
-  ]).then(([inventoryTests, expiryTests]) => {
-    inventoryTests.runInventoryTests();
-    expiryTests.runReservationExpiryTests();
+    import('./tests/checkout-test'),
+  ]).then(([inventory, expiry, checkout]) => {
+    inventory.runInventoryTests();
+    expiry.runReservationExpiryTests();
+    checkout.runCheckoutTests();
   });
 }
+
+const disposeFlashSale = initializeFlashSale(
+  products.map((product) => ({
+    id: product.id,
+    stock: product.stock,
+  }))
+);
+
+window.addEventListener('pagehide', disposeFlashSale, {
+  once: true,
+});
