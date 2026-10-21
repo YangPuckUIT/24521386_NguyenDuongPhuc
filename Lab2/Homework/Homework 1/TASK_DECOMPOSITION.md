@@ -29,11 +29,11 @@
 - [x] Manage keyboard focus
 
 ## M4 — WCAG 2.2 AA
-- [ ] Verify color contrast
-- [ ] Add accessible labels
-- [ ] Support screen readers
-- [ ] Verify visible focus indicators
-- [ ] Test keyboard accessibility
+- [x] Check color contrast
+- [x] Verify accessible labels and ARIA
+- [x] Test keyboard navigation and focus
+- [x] Test with Windows Narrator
+- [x] Test responsive layout and browser zoom
 
 ## M5 — Lighthouse & Report
 - [ ] Run Lighthouse Accessibility audit

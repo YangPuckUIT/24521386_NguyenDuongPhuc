@@ -385,3 +385,70 @@ table[role="grid"] tbody tr.is-selected td:first-child {
 table[role="grid"] tbody td {
   cursor: default;
 }
+
+
+/* M4 — Accessibility enhancements */
+
+.keyboard-help {
+  margin: -14px 0 24px;
+  font-size: 0.825rem;
+  color: #465a4d;
+  line-height: 1.7;
+}
+
+/* Visually hidden, but accessible to screen readers */
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Strong and consistent focus indication */
+
+button:focus-visible,
+input:focus-visible,
+a:focus-visible {
+  outline: 3px solid #176c43;
+  outline-offset: 3px;
+}
+
+table[role="grid"] td:focus-visible {
+  outline: 3px solid #176c43;
+  outline-offset: -3px;
+  background: #e5eee4;
+}
+
+/* Selected rows remain distinguishable */
+
+table[role="grid"] tbody tr.is-selected {
+  background: #dcebdd;
+}
+
+table[role="grid"] tbody tr.is-selected td:first-child {
+  box-shadow: inset 4px 0 0 #176c43;
+}
+
+/* High contrast preference */
+
+@media (prefers-contrast: more) {
+  table[role="grid"] {
+    border: 2px solid currentColor;
+  }
+
+  th,
+  td {
+    border-bottom-color: #344b3b;
+  }
+
+  button,
+  input {
+    border-width: 2px;
+  }
+}

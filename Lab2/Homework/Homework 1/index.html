@@ -21,13 +21,25 @@
   <main id="main-content" tabindex="-1">
     <section aria-labelledby="grid-heading">
       <h2 id="grid-heading">Student Records</h2>
-      <p id="grid-description">
-        Browse and manage student information.
-      </p>
+    <p id="grid-description">
+        Browse, search and manage student records.
+    </p>
 
-      <p id="app-status" role="status">
-        Initializing application...
-      </p>
+    <p id="keyboard-help" class="keyboard-help">
+  Keyboard controls: Use arrow keys to navigate cells,
+  Enter to select a row, and Space to toggle selection.
+    </p>
+
+    <p id="app-status">
+  Initializing application...
+    </p>
+
+    <p
+    id="grid-announcement"
+    class="sr-only"
+    role="status"
+    aria-atomic="true">
+    </p>
 
       <div class="grid-toolbar">
   <label for="grid-search">Search students</label>
@@ -37,7 +49,7 @@
     placeholder="Search by name, ID or major..."
     autocomplete="off"
   >
-  <p id="result-count" role="status" aria-live="polite"></p>
+  <p id="result-count"></p>
 </div>
 
 <section

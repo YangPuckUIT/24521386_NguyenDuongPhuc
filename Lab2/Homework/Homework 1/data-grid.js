@@ -83,6 +83,10 @@ export class DataGrid {
     const table = document.createElement("table");
     table.setAttribute("role", "grid");
     table.setAttribute("aria-label", this.ariaLabel);
+    table.setAttribute(
+    "aria-describedby",
+    "keyboard-help"
+    );
     table.setAttribute("aria-multiselectable", "true");
     table.setAttribute("aria-rowcount", String(pageData.length + 1));
     table.setAttribute("aria-colcount", String(this.columns.length));
@@ -308,6 +312,14 @@ export class DataGrid {
 
     this.update(true);
 
+    const isSelected = this.selectedRows.has(key);
+
+this.announce(
+  `${item.name ?? "Row"} ${
+    isSelected ? "selected" : "deselected"
+  }. ${this.selectedRows.size} rows selected.`
+);
+
     if (typeof this.onRowSelect === "function") {
       this.onRowSelect(item);
     }
@@ -325,6 +337,19 @@ export class DataGrid {
     this.currentPage = 1;
     this.activeRow = 0;
     this.update();
+
+    const column = this.columns.find(
+  (item) => item.accessorKey === key
+);
+
+this.announce(
+  `Sorted by ${column?.header ?? key}, ${
+    this.sortDirection === "asc"
+      ? "ascending"
+      : "descending"
+  }.`
+);
+
   }
 
   setSearch(query) {
@@ -332,6 +357,11 @@ export class DataGrid {
     this.currentPage = 1;
     this.activeRow = 0;
     this.update();
+
+    this.announce(
+  `${this.getProcessedData().length} matching records.`
+);
+
   }
 
   goToPage(page) {
@@ -340,6 +370,11 @@ export class DataGrid {
     this.currentPage = page;
     this.activeRow = 0;
     this.update();
+
+    this.announce(
+  `Page ${this.currentPage} of ${this.getTotalPages()}.`
+);
+
   }
 
   update(restoreFocus = false) {
@@ -382,6 +417,14 @@ export class DataGrid {
       this.focusCell(this.activeRow, this.activeCol);
     }
   }
+
+  announce(message) {
+  const region = document.querySelector("#grid-announcement");
+
+  if (region) {
+    region.textContent = message;
+  }
+}
 
   mount(container) {
     if (!(container instanceof HTMLElement)) {
