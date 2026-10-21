@@ -13,9 +13,9 @@
 - [x] Verify browser rendering
 
 ## M1 — Semantic Data-Grid
-- [ ] Implement native table structure
-- [ ] Render dynamic rows and columns
-- [ ] Implement ARIA grid semantics
+- [x] Implement native table structure
+- [x] Render dynamic rows and columns
+- [x] Implement ARIA grid semantics
 
 ## M2 — Data Operations
 - [ ] Implement column sorting
