@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Accessible enterprise data grid">
+  <title>Enterprise Data Grid</title>
+  <link rel="stylesheet" href="./styles.css">
+  <script src="./main.js" type="module"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">
+    Skip to main content
+  </a>
+
+  <header class="site-header">
+    <h1>Enterprise Data Grid</h1>
+    <p>Accessible student management system</p>
+  </header>
+
+  <main id="main-content" tabindex="-1">
+    <section aria-labelledby="grid-heading">
+      <h2 id="grid-heading">Student Records</h2>
+      <p id="grid-description">
+        Browse and manage student information.
+      </p>
+
+      <p id="app-status" role="status">
+        Initializing application...
+      </p>
+
+      <section id="data-grid-container"
+               aria-label="Student data grid">
+      </section>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>HW1 — WCAG 2.2 AA Data Grid</p>
+  </footer>
+</body>
+</html>
