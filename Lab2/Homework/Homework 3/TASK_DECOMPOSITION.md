@@ -68,10 +68,10 @@ The project focuses on accurate countdown timing, inventory reservation, lock ex
 **Commit:** `test(hw3): verify concurrent inventory operations`
 
 ### M7 — AI Failure Mode Audit
-- [ ] Document at least three verified AI flaws
-- [ ] Explain impact and corrections
-- [ ] Provide verification evidence
-- [ ] Complete final documentation
+- [x] Document at least three verified AI flaws
+- [x] Explain impact and corrections
+- [x] Provide verification evidence
+- [x] Complete final documentation
 
 **Commit:** `docs(hw3): complete AI failure audit and documentation`
 
