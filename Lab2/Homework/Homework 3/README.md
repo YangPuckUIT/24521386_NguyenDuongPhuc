@@ -124,3 +124,7 @@ See [AI_FAILURE_AUDIT.md](AI_FAILURE_AUDIT.md) for documented AI-generated imple
 - M5 - Checkout Controller
 - M6 - Concurrency Testing
 - M7 - AI Failure Mode Audit & Documentation
+
+## Demo
+
+![Demo Web](./demo/demo.gif)

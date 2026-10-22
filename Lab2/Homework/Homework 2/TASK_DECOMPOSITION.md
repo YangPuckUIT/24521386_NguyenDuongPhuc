@@ -62,3 +62,7 @@ The homework is ready for submission when:
 - [x] Clear Queue resets the application.
 - [x] All final verification tests pass.
 - [x] Required screenshots and report are prepared.
+
+## Demo
+
+![Demo Web](./demo/demo.gif)
