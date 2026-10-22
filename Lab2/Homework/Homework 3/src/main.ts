@@ -251,3 +251,11 @@ const disposeFlashSale = initializeFlashSale(
 window.addEventListener('pagehide', disposeFlashSale, {
   once: true,
 });
+
+if (import.meta.env.DEV) {
+  import('./tests/reservation-validation-test').then(
+    ({ runReservationValidationTest }) => {
+      runReservationValidationTest();
+    }
+  );
+}

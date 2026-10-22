@@ -26,8 +26,10 @@ export function initializeFlashSale(
     );
   }
 
+
   let activeOrder: ActiveOrder | null = null;
   let expiryTimer: number | null = null;
+  let previousFocus: HTMLElement | null = null;
 
   const modal = document.createElement('section');
   modal.className = 'checkout-modal';
@@ -53,6 +55,43 @@ export function initializeFlashSale(
   `;
 
   document.body.appendChild(modal);
+
+  function handleModalKeydown(event: KeyboardEvent): void {
+  if (modal.hidden) return;
+
+  if (event.key === 'Escape') {
+    event.preventDefault();
+    handleCancel();
+    return;
+  }
+
+  if (event.key !== 'Tab') return;
+
+  const focusableElements = Array.from(
+    modal.querySelectorAll<HTMLElement>(
+      'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
+    )
+  );
+
+  if (focusableElements.length === 0) {
+    event.preventDefault();
+    return;
+  }
+
+  const first = focusableElements[0];
+  const last = focusableElements[focusableElements.length - 1];
+
+  if (event.shiftKey && document.activeElement === first) {
+    event.preventDefault();
+    last.focus();
+  } else if (!event.shiftKey && document.activeElement === last) {
+    event.preventDefault();
+    first.focus();
+  } else if (!modal.contains(document.activeElement)) {
+    event.preventDefault();
+    first.focus();
+  }
+}
 
   const message = modal.querySelector<HTMLElement>('#checkout-message')!;
   const time = modal.querySelector<HTMLElement>('#checkout-time')!;
@@ -109,6 +148,8 @@ export function initializeFlashSale(
   function closeOrder(): void {
     activeOrder = null;
     modal.hidden = true;
+    previousFocus?.focus();
+    previousFocus = null;
 
     if (expiryTimer !== null) {
       clearInterval(expiryTimer);
@@ -205,27 +246,31 @@ export function initializeFlashSale(
     if (!card) return;
 
     const productId = Number(card.dataset.productId);
+
+    previousFocus = button;
     handleBuy(productId);
   }
 
-  document.addEventListener('click', handleProductClick);
-  confirmButton.addEventListener('click', handleCheckout);
-  cancelButton.addEventListener('click', handleCancel);
+document.addEventListener('click', handleProductClick);
+modal.addEventListener('keydown', handleModalKeydown);
+confirmButton.addEventListener('click', handleCheckout);
+cancelButton.addEventListener('click', handleCancel);
 
-  refreshStock();
+refreshStock();
 
-  return () => {
-    document.removeEventListener('click', handleProductClick);
+return () => {
+  document.removeEventListener('click', handleProductClick);
+  modal.removeEventListener('keydown', handleModalKeydown);
 
-    if (activeOrder) {
-      const controller = controllers.get(activeOrder.productId);
-      controller?.cancel(activeOrder.reservationId);
-    }
+  if (activeOrder) {
+    const controller = controllers.get(activeOrder.productId);
+    controller?.cancel(activeOrder.reservationId);
+  }
 
-    if (expiryTimer !== null) {
-      clearInterval(expiryTimer);
-    }
+  if (expiryTimer !== null) {
+    clearInterval(expiryTimer);
+  }
 
-    modal.remove();
-  };
+  modal.remove();
+};
 }
