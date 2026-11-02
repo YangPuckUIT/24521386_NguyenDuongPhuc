@@ -32,18 +32,42 @@ ages, and IQ values.
 
 Status: Pending
 
-- [ ] Add case-insensitive search
-- [ ] Add numeric minimum IQ filter
-- [ ] Add sorting using toSorted()
-- [ ] Calculate visible people as derived state
-- [ ] Avoid useEffect for filtering and sorting
+- [x] Add case-insensitive search
+- [x] Add numeric minimum IQ filter
+- [x] Add sorting using toSorted()
+- [x] Calculate visible people as derived state
+- [x] Avoid useEffect for filtering and sorting
+
 
 ## Checkpoint 3 - Delete, Reset and Accessibility
 
-Status: Pending
+Status: Completed
 
-- [ ] Delete people immutably
-- [ ] Reset original data
-- [ ] Add accessible live result counter
-- [ ] Verify stable React keys
-- [ ] Verify rendering with React DevTools
+### Tasks
+- [x] Implement immutable deletion using filter()
+- [x] Restore original dataset with Reset
+- [x] Reset search, IQ and sorting inputs
+- [x] Add output with role="status"
+- [x] Add aria-live="polite"
+- [x] Preserve stable keys using person.id
+- [x] Add accessible Delete button labels
+- [x] Handle empty search results
+
+### React State
+- people: current editable dataset
+- query: search keyword
+- minIq: minimum IQ threshold (number or null)
+- sortBy: sorting preference
+
+### Derived State
+visiblePeople is calculated directly from people,
+query, minIq and sortBy during render.
+
+No useEffect is used for filtering or sorting.
+
+### Verification
+- Deleting a pioneer updates the result count
+- Reset restores all six pioneers
+- Search input retains focus after deleting an item
+- Stable IDs preserve remaining item identities
+- Live counter announces result changes

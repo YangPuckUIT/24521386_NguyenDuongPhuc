@@ -9,7 +9,7 @@ export function ScientistDirectory({
   const iqId = useId();
   const sortId = useId();
 
-  const [people] = useState(initialData);
+  const [people, setPeople] = useState(initialData);
   const [query, setQuery] = useState('');
   const [minIq, setMinIq] = useState(160);
   const [sortBy, setSortBy] = useState('iq-desc');
@@ -21,7 +21,8 @@ export function ScientistDirectory({
         .toLowerCase()
         .includes(query.trim().toLowerCase());
 
-      const matchesIq = minIq === null || person.iq >= minIq;
+      const matchesIq =
+        minIq === null || person.iq >= minIq;
 
       return matchesName && matchesIq;
     })
@@ -31,6 +32,21 @@ export function ScientistDirectory({
       if (sortBy === 'age-desc') return b.age - a.age;
       return a.age - b.age;
     });
+
+  // Delete without mutating the original array
+  function handleDelete(id) {
+    setPeople((prev) =>
+      prev.filter((person) => person.id !== id)
+    );
+  }
+
+  // Restore original dataset and filters
+  function handleReset() {
+    setPeople([...initialData]);
+    setQuery('');
+    setMinIq(160);
+    setSortBy('iq-desc');
+  }
 
   return (
     <section aria-label="Pioneer Directory">
@@ -52,20 +68,18 @@ export function ScientistDirectory({
           />
         </div>
 
-       
-<div className="field">
-  <label htmlFor={iqId}>Minimum IQ</label>
-  <input
-    id={iqId}
-    type="number"
-    value={minIq ?? ''}
-    onChange={(e) => {
-      const value = e.target.valueAsNumber;
-      setMinIq(Number.isNaN(value) ? null : value);
-    }}
-  />
-</div>
-
+        <div className="field">
+          <label htmlFor={iqId}>Minimum IQ</label>
+          <input
+            id={iqId}
+            type="number"
+            value={minIq ?? ''}
+            onChange={(e) => {
+              const value = e.target.valueAsNumber;
+              setMinIq(Number.isNaN(value) ? null : value);
+            }}
+          />
+        </div>
 
         <div className="field">
           <label htmlFor={sortId}>Sort by</label>
@@ -82,19 +96,42 @@ export function ScientistDirectory({
         </div>
       </form>
 
-      <p className="result-count">
-        Found {visiblePeople.length} pioneers
-      </p>
+      <div className="toolbar">
+        <output role="status" aria-live="polite">
+          Found {visiblePeople.length} pioneers
+        </output>
 
-      <ul>
-        {visiblePeople.map((person) => (
-          <li key={person.id}>
-            <h2>{person.name}</h2>
-            <p>Age: {person.age}</p>
-            <p>IQ: {person.iq}</p>
-          </li>
-        ))}
-      </ul>
+        <button
+          type="button"
+          className="reset-btn"
+          onClick={handleReset}
+        >
+          Reset Directory
+        </button>
+      </div>
+
+      {visiblePeople.length === 0 ? (
+        <p>No pioneers found.</p>
+      ) : (
+        <ul>
+          {visiblePeople.map((person) => (
+            <li key={person.id}>
+              <h2>{person.name}</h2>
+              <p>Age: {person.age}</p>
+              <p>IQ: {person.iq}</p>
+
+              <button
+                type="button"
+                className="delete-btn"
+                onClick={() => handleDelete(person.id)}
+                aria-label={`Delete ${person.name}`}
+              >
+                Delete
+              </button>
+            </li>
+          ))}
+        </ul>
+      )}
     </section>
   );
 }
