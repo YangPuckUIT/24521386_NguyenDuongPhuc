@@ -1,0 +1,41 @@
+
+#root {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 32px 20px;
+}
+
+section {
+  width: 100%;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+section > p {
+  text-align: center;
+  color: #64748b;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+}
+
+li {
+  background: #ffffff;
+  color: #1e293b;
+  padding: 20px;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+}
+
+li h2 {
+  margin-top: 0;
+  font-size: 20px;
+}
