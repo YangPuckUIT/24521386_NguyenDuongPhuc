@@ -1,0 +1,54 @@
+
+.app {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 48px 20px;
+}
+
+header {
+  margin-bottom: 32px;
+}
+
+header > p:first-child {
+  color: #48a9ff;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+h1 {
+  font-size: clamp(28px, 5vw, 44px);
+}
+
+.squad-selector {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.squad-selector button,
+button {
+  border: 1px solid #395070;
+  border-radius: 10px;
+  padding: 12px 18px;
+  color: white;
+  background: #17263e;
+}
+
+.squad-selector button.active {
+  background: #086acb;
+  border-color: #58b5ff;
+}
+
+article,
+section[role="alert"] {
+  padding: 24px;
+  border: 1px solid #324d72;
+  border-radius: 16px;
+  background: #111e32;
+}
+
+button:focus-visible {
+  outline: 3px solid #78c8ff;
+  outline-offset: 3px;
+}
