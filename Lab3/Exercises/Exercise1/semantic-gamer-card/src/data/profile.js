@@ -6,7 +6,7 @@ export const developer = {
   bio: "IT student passionate about web development, gaming, and building creative applications.",
 
   avatar: {
-    url: "https://github.com/identicons/YangPuckUIT.png",
+    url: "https://github.com/YangPuckUIT.png",
     width: 160,
     height: 160,
   },

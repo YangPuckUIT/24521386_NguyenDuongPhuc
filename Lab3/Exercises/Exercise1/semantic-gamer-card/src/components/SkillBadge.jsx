@@ -1,8 +1,14 @@
-export default function SkillBadge({ name = "Unknown", level = "Beginner" }) {
+
+import styles from "./DeveloperCard.module.css";
+
+export default function SkillBadge({
+  name = "Unknown",
+  level = "Beginner",
+}) {
   return (
-    <li>
-      <span>{name}</span>
-      <span>{level}</span>
+    <li className={styles.skillBadge}>
+      <span className={styles.skillName}>{name}</span>
+      <span className={styles.skillLevel}>{level}</span>
     </li>
   );
 }

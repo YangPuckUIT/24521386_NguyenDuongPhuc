@@ -34,12 +34,12 @@ feat(ex1): implement semantic DeveloperCard and SkillBadge
 
 ### Phase 2: CSS Modules and Responsive Design
 
-- [ ] T11: Create DeveloperCard.module.css
-- [ ] T12: Add CSS Custom Properties
-- [ ] T13: Style profile card, avatar, metrics and skills
-- [ ] T14: Remove default list markers using CSS
-- [ ] T15: Implement responsive layout for 375px
-- [ ] T16: Prevent horizontal scrolling
+- [x] T11: Create DeveloperCard.module.css
+- [x] T12: Add CSS Custom Properties
+- [x] T13: Style profile card, avatar, metrics and skills
+- [x] T14: Remove default list markers using CSS
+- [x] T15: Implement responsive layout for 375px
+- [x] T16: Prevent horizontal scrolling
 
 Commit 2:
 style(ex1): add responsive 375px CSS module
@@ -50,11 +50,11 @@ style(ex1): add responsive 375px CSS module
 - [x] DeveloperCard.jsx contains no insecure HTTP URLs
 - [x] Search skills works
 - [x] Sort skills works
-- [ ] CSS Modules applied successfully
+- [x] CSS Modules applied successfully
 - [ ] Accessibility Tree inspected
-- [ ] Responsive layout tested at 375px
-- [ ] Zero horizontal scrolling
-- [ ] npm run build passes
+- [x] Responsive layout tested at 375px
+- [x] Zero horizontal scrolling
+- [x] npm run build passes
 - [ ] Git history contains both required commits
 
 ## 4. Git Commit Plan

@@ -1,6 +1,7 @@
 
 import { Fragment, useId, useState } from "react";
 import SkillBadge from "./SkillBadge";
+import styles from "./DeveloperCard.module.css";
 
 export default function DeveloperCard({
   name = "Unknown Developer",
@@ -46,10 +47,11 @@ export default function DeveloperCard({
     });
 
   return (
-    <article aria-labelledby={headingId}>
-      <header>
+    <article className={styles.card} aria-labelledby={headingId}>
+      <header className={styles.header}>
         {avatar.url && !avatarError ? (
           <img
+            className={styles.avatar}
             src={avatar.url}
             alt={`Avatar of ${name}`}
             width={avatar.width ?? 160}
@@ -57,12 +59,16 @@ export default function DeveloperCard({
             onError={() => setAvatarError(true)}
           />
         ) : (
-          <span role="img" aria-label={`Initials of ${name}`}>
+          <span
+  className={styles.avatarFallback}
+  role="img"
+  aria-label={`Initials of ${name}`}
+>
             {initials}
           </span>
         )}
 
-        <hgroup>
+        <hgroup className={styles.identity}>
           <h2 id={headingId}>{name}</h2>
           <p>{role}</p>
         </hgroup>
@@ -72,7 +78,7 @@ export default function DeveloperCard({
       </header>
 
       <section aria-label="Developer statistics">
-        <dl>
+  <dl className={styles.metrics}>
           {Object.entries(metrics).map(([key, value]) => (
             <Fragment key={key}>
               <dt>{key}</dt>
@@ -82,7 +88,10 @@ export default function DeveloperCard({
         </dl>
       </section>
 
-      <section aria-label="Developer skills">
+      <section
+  className={styles.skillsSection}
+  aria-label="Developer skills"
+>
         <h3>Skills & Expertise</h3>
 
         <label htmlFor={`${headingId}-search`}>
@@ -90,6 +99,7 @@ export default function DeveloperCard({
         </label>
 
         <input
+          className={styles.control}
           id={`${headingId}-search`}
           type="search"
           value={search}
@@ -101,16 +111,17 @@ export default function DeveloperCard({
           Sort by
         </label>
 
-        <select
-          id={`${headingId}-sort`}
-          value={sortBy}
-          onChange={(event) => setSortBy(event.target.value)}
-        >
-          <option value="name">Name (A-Z)</option>
-          <option value="level">Skill level (High-Low)</option>
-        </select>
+<select
+  className={styles.control}
+  id={`${headingId}-sort`}
+  value={sortBy}
+  onChange={(event) => setSortBy(event.target.value)}
+>
+  <option value="name">Name (A-Z)</option>
+  <option value="level">Skill level (High-Low)</option>
+</select>
 
-        <ul aria-label="Skills">
+        <ul className={styles.skillList} aria-label="Skills">
           {visibleSkills.map((skill) => (
             <SkillBadge
               key={skill.id}
