@@ -50,9 +50,23 @@ export function PubgMatchTelemetry({ squadId = 'te' }) {
     return <section>Waiting for telemetry...</section>;
   }
 
-  if (view.status === 'LOADING') {
-    return <section aria-busy="true">Syncing radar...</section>;
-  }
+if (view.status === 'LOADING') {
+  return (
+    <section
+      className="telemetry-skeleton"
+      aria-busy="true"
+      aria-label="Loading PUBG squad telemetry"
+    >
+      <span className="sr-only">
+        Syncing KRAFTON Radar...
+      </span>
+      <div className="skeleton-line skeleton-title" />
+      <div className="skeleton-line skeleton-medium" />
+      <div className="skeleton-line skeleton-short" />
+      <div className="skeleton-line skeleton-medium" />
+    </section>
+  );
+}
 
   if (view.status === 'ERROR') {
     return (
