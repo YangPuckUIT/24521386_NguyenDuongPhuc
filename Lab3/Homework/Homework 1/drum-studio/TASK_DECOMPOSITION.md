@@ -26,12 +26,12 @@ Commit: `feat(hw1): add drum pad components`
 
 ## Task 3 – Keyboard Controls
 
-- [ ] Create `useDrumKeyboard.js`
-- [ ] Use `event.code` instead of deprecated `keyCode`
-- [ ] Ignore `event.repeat`
-- [ ] Ignore shortcuts while typing in input fields
-- [ ] Handle keyboard listener cleanup
-- [ ] Test all seven physical keys
+- [x] Create `useDrumKeyboard.js`
+- [x] Use `event.code` instead of deprecated `keyCode`
+- [x] Ignore `event.repeat`
+- [x] Ignore shortcuts while typing in input fields
+- [x] Handle keyboard listener cleanup
+- [x] Test all seven physical keys
 
 Commit: `feat(hw1): implement keyboard controls`
 
