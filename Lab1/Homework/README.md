@@ -1,4 +1,4 @@
-# Lab 1 — Web Development Homework
+# Lab 1 - Web Development Homework
 
 This lab focuses on developing production-oriented web applications using HTML5, CSS3, and JavaScript.
 
@@ -6,7 +6,7 @@ The three homework assignments explore web accessibility, interactive audio syst
 
 ---
 
-## Homework 1 — Production Portfolio
+## Homework 1 - Production Portfolio
 
 An enhanced developer portfolio focusing on accessibility, security, performance optimization, and production-ready web development practices.
 
@@ -29,7 +29,7 @@ An enhanced developer portfolio focusing on accessibility, security, performance
 
 ---
 
-## Homework 2 — Web Audio Drum Kit Engine
+## Homework 2 - Web Audio Drum Kit Engine
 
 An interactive browser-based drum kit demonstrating modular JavaScript architecture, polyphonic audio playback, keyboard event handling, and beat recording.
 
@@ -53,7 +53,7 @@ An interactive browser-based drum kit demonstrating modular JavaScript architect
 
 ---
 
-## Homework 3 — Resilient Event Hub & AI Failure Audit
+## Homework 3 - Resilient Event Hub & AI Failure Audit
 
 A resilient event landing page featuring accurate countdown timing, state-driven form interactions, and secure input handling.
 
