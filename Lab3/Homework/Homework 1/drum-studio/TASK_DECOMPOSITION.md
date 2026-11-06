@@ -47,12 +47,12 @@ Commit: `feat(hw1): add drum audio playback`
 
 ## Task 5 – Accessibility
 
-- [ ] Use semantic HTML buttons
-- [ ] Implement `aria-pressed` for active pads
-- [ ] Provide visible keyboard focus
-- [ ] Support Tab, Enter, and Space
-- [ ] Check color contrast
-- [ ] Verify WCAG 2.2 AA requirements
+- [x] Use semantic HTML buttons
+- [x] Implement `aria-pressed` for active pads
+- [x] Provide visible keyboard focus
+- [x] Support Tab, Enter, and Space
+- [x] Check color contrast
+- [x] Verify WCAG 2.2 AA requirements
 
 Commit: `feat(hw1): improve pad accessibility`
 

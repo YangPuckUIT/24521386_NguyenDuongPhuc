@@ -1,4 +1,4 @@
-
+import "./App.css";
 import DrumKit from "./components/DrumKit";
 
 export default function App() {

@@ -31,23 +31,19 @@ const handleTrigger = useCallback((padId) => {
 
   useDrumKeyboard(PAD_MAP, handleTrigger, handleRelease);
 
-  const handlePadClick = (padId) => {
-    handleTrigger(padId);
-    handleRelease(padId);
-  };
-
   return (
     <section aria-labelledby="drum-kit-title">
       <h2 id="drum-kit-title">Drum Pads</h2>
 
       <div className="drum-grid">
         {DRUM_PADS.map((pad) => (
-          <DrumPad
-            key={pad.id}
-            pad={pad}
-            isActive={activePads.includes(pad.id)}
-            onTrigger={handlePadClick}
-          />
+<DrumPad
+  key={pad.id}
+  pad={pad}
+  isActive={activePads.includes(pad.id)}
+  onTrigger={handleTrigger}
+  onRelease={handleRelease}
+/>
         ))}
       </div>
     </section>
