@@ -76,14 +76,14 @@ Commit: `feat(hw1): add visual audio meter`
 
 ## Task 8 – Quality Assurance
 
-- [ ] Test responsive layouts
-- [ ] Test keyboard-only navigation
-- [ ] Test Vietnamese UniKey input behavior
-- [ ] Run Lighthouse audit
-- [ ] Run automated accessibility checks
-- [ ] Perform manual WCAG checks
-- [ ] Fix identified issues
-- [ ] Run production build
+- [x] Test responsive layouts
+- [x] Test keyboard-only navigation
+- [x] Test Vietnamese UniKey input behavior
+- [x] Run Lighthouse audit
+- [x] Run automated accessibility checks
+- [x] Perform manual WCAG checks
+- [x] Fix identified issues
+- [x] Run production build
 
 Commit: `test(hw1): verify accessibility and performance`
 
