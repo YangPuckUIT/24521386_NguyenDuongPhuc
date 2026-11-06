@@ -112,3 +112,72 @@ main p {
     padding: 1rem;
   }
 }
+
+
+/* Task 6: Hit History */
+
+.hit-history {
+  margin-top: 2.5rem;
+  padding: 1.5rem;
+  background: #1e293b;
+  border: 1px solid #475569;
+  border-radius: 14px;
+  text-align: left;
+}
+
+.hit-history h2 {
+  margin: 0 0 1rem;
+  font-size: 1.25rem;
+  color: #f8fafc;
+}
+
+.hit-announcement {
+  display: block;
+  margin-bottom: 1rem;
+  color: #cbd5e1;
+  font-size: 0.95rem;
+}
+
+.hit-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.hit-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 0.9rem;
+  background: #334155;
+  border: 1px solid #64748b;
+  border-radius: 8px;
+  color: #f8fafc;
+}
+
+.hit-list kbd {
+  min-width: 1.5rem;
+  font-weight: 700;
+  color: #fde68a;
+}
+
+.hit-list span {
+  font-size: 0.9rem;
+}
+
+@media (max-width: 480px) {
+  .hit-history {
+    padding: 1rem;
+  }
+
+  .hit-list {
+    gap: 0.5rem;
+  }
+
+  .hit-list li {
+    padding: 0.5rem 0.7rem;
+  }
+}

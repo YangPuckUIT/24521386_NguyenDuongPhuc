@@ -58,10 +58,10 @@ Commit: `feat(hw1): improve pad accessibility`
 
 ## Task 6 – Visual Hit History
 
-- [ ] Create `HitHistory.jsx`
-- [ ] Display recently triggered pads
-- [ ] Use `<output aria-live="polite">`
-- [ ] Ensure sound events have accessible text alternatives
+- [x] Create `HitHistory.jsx`
+- [x] Display recently triggered pads
+- [x] Use `<output aria-live="polite">`
+- [x] Ensure sound events have accessible text alternatives
 
 Commit: `feat(hw1): add accessible hit history`
 
