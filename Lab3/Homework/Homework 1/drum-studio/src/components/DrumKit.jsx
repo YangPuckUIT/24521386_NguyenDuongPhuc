@@ -1,20 +1,34 @@
 import { useDrumAudio } from "../hooks/useDrumAudio";
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import DrumPad from "./DrumPad";
 import { DRUM_PADS, PAD_MAP, PAD_ID_MAP } from "../data/drumPads";
 import { useDrumKeyboard } from "../hooks/useDrumKeyboard";
 import HitHistory from "./HitHistory";
+import DecibelMeter from "./DecibelMeter";
 
 export default function DrumKit() {
   const [hits, setHits] = useState([]);
   const nextHitId = useRef(0);
   const { playSound } = useDrumAudio();
   const [activePads, setActivePads] = useState([]);
+  const [level, setLevel] = useState(0);
 
+
+useEffect(() => {
+  if (level === 0) return;
+
+  const timer = window.setTimeout(() => {
+    setLevel((previous) => Math.max(0, previous - 5));
+  }, 50);
+
+  return () => window.clearTimeout(timer);
+}, [level]);
 
 
 const handleTrigger = useCallback((padId) => {
   playSound(padId);
+  // Task 7: Update visual audio activity
+  setLevel(100);
 
   setActivePads((previous) =>
     previous.includes(padId)
@@ -73,6 +87,7 @@ return (
 
     {/* Task 6: Recent Hit History */}
     <HitHistory hits={hits} />
+    <DecibelMeter level={level} />
   </section>
 );
 }

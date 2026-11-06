@@ -181,3 +181,62 @@ main p {
     padding: 0.5rem 0.7rem;
   }
 }
+
+
+/* Task 7: Drum Level Meter */
+
+.decibel-meter {
+  margin-top: 1.5rem;
+  padding: 1.5rem;
+  background: #1e293b;
+  border: 1px solid #475569;
+  border-radius: 14px;
+  text-align: left;
+}
+
+.decibel-meter h2 {
+  margin: 0 0 1rem;
+  font-size: 1.25rem;
+  color: #f8fafc;
+}
+
+.meter-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+  color: #e2e8f0;
+}
+
+.meter-info strong {
+  font-variant-numeric: tabular-nums;
+  color: #f8fafc;
+}
+
+.meter-track {
+  height: 20px;
+  overflow: hidden;
+  background: #334155;
+  border: 1px solid #64748b;
+  border-radius: 999px;
+}
+
+.meter-fill {
+  height: 100%;
+  background: #4ade80;
+  border-radius: inherit;
+  transition: width 50ms linear;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .meter-fill {
+    transition: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .decibel-meter {
+    padding: 1rem;
+  }
+}

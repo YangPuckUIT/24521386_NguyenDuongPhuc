@@ -67,10 +67,10 @@ Commit: `feat(hw1): add accessible hit history`
 
 ## Task 7 – Visual Decibel Meter
 
-- [ ] Create `DecibelMeter.jsx`
-- [ ] Display visual audio activity
-- [ ] Update meter when pads are triggered
-- [ ] Provide accessible text for meter values
+- [x] Create `DecibelMeter.jsx`
+- [x] Display visual audio activity
+- [x] Update meter when pads are triggered
+- [x] Provide accessible text for meter values
 
 Commit: `feat(hw1): add visual audio meter`
 
