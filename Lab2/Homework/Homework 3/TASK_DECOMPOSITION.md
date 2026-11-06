@@ -9,6 +9,7 @@ The project focuses on accurate countdown timing, inventory reservation, lock ex
 ## Task Decomposition
 
 ### M0 — Project Initialization
+
 - [x] Initialize Vite + TypeScript
 - [x] Clean default Vite files
 - [x] Create initial application interface
@@ -19,6 +20,7 @@ The project focuses on accurate countdown timing, inventory reservation, lock ex
 **Commit:** `chore(hw3): initialize Vite TypeScript project`
 
 ### M1 — Flash Sale Interface
+
 - [x] Create responsive product layout
 - [x] Display product prices and discounts
 - [x] Display available stock
@@ -27,6 +29,7 @@ The project focuses on accurate countdown timing, inventory reservation, lock ex
 **Commit:** `feat(hw3): build flash sale interface`
 
 ### M2 — Anti-Drift Timer
+
 - [x] Implement Date.now()-based countdown
 - [x] Use requestAnimationFrame
 - [x] Support timer cancellation
@@ -35,6 +38,7 @@ The project focuses on accurate countdown timing, inventory reservation, lock ex
 **Commit:** `feat(hw3): implement anti-drift countdown timer`
 
 ### M3 — Inventory State Machine
+
 - [x] Define reservation states
 - [x] Implement valid transitions
 - [x] Reject invalid transitions
@@ -43,6 +47,7 @@ The project focuses on accurate countdown timing, inventory reservation, lock ex
 **Commit:** `feat(hw3): implement inventory state machine`
 
 ### M4 — Inventory Reservation
+
 - [x] Implement temporary inventory locks
 - [x] Track reservation expiration
 - [x] Release expired reservations
@@ -51,6 +56,7 @@ The project focuses on accurate countdown timing, inventory reservation, lock ex
 **Commit:** `feat(hw3): implement reservation lock expiry`
 
 ### M5 — Checkout Controller
+
 - [x] Implement successful checkout
 - [x] Handle checkout failure
 - [x] Reject expired reservations
@@ -59,6 +65,7 @@ The project focuses on accurate countdown timing, inventory reservation, lock ex
 **Commit:** `feat(hw3): implement checkout lifecycle`
 
 ### M6 — Concurrency Testing
+
 - [x] Simulate 100 concurrent reservation attempts
 - [x] Verify overselling prevention
 - [x] Test duplicate checkout
@@ -68,6 +75,7 @@ The project focuses on accurate countdown timing, inventory reservation, lock ex
 **Commit:** `test(hw3): verify concurrent inventory operations`
 
 ### M7 — AI Failure Mode Audit
+
 - [x] Document at least three verified AI flaws
 - [x] Explain impact and corrections
 - [x] Provide verification evidence
@@ -87,12 +95,12 @@ The project focuses on accurate countdown timing, inventory reservation, lock ex
 
 ## Evidence Checklist
 
-- [ ] M0 project initialization
-- [ ] M1 flash sale interface
-- [ ] M2 anti-drift timer
-- [ ] M3 inventory state machine
-- [ ] M4 reservation expiry
-- [ ] M5 checkout lifecycle
-- [ ] M6 concurrency tests
-- [ ] M7 AI failure audit
-- [ ] Git commit history
+- [x] M0 project initialization
+- [x] M1 flash sale interface
+- [x] M2 anti-drift timer
+- [x] M3 inventory state machine
+- [x] M4 reservation expiry
+- [x] M5 checkout lifecycle
+- [x] M6 concurrency tests
+- [x] M7 AI failure audit
+- [x] Git commit history
