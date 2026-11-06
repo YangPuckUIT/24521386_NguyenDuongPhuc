@@ -1,21 +1,25 @@
-
+import { useDrumAudio } from "../hooks/useDrumAudio";
 import { useCallback, useState } from "react";
 import DrumPad from "./DrumPad";
 import { DRUM_PADS, PAD_MAP } from "../data/drumPads";
 import { useDrumKeyboard } from "../hooks/useDrumKeyboard";
 
 export default function DrumKit() {
+  const { playSound } = useDrumAudio();
   const [activePads, setActivePads] = useState([]);
 
-  const handleTrigger = useCallback((padId) => {
-    setActivePads((previous) =>
-      previous.includes(padId)
-        ? previous
-        : [...previous, padId]
-    );
 
-    console.log("Key down:", padId);
-  }, []);
+const handleTrigger = useCallback((padId) => {
+  playSound(padId);
+
+  setActivePads((previous) =>
+    previous.includes(padId)
+      ? previous
+      : [...previous, padId]
+  );
+
+  console.log("Key down:", padId);
+}, [playSound]);
 
   const handleRelease = useCallback((padId) => {
     setActivePads((previous) =>

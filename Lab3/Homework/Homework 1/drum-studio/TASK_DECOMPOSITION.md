@@ -37,11 +37,11 @@ Commit: `feat(hw1): implement keyboard controls`
 
 ## Task 4 – Audio Playback
 
-- [ ] Add drum sound assets
-- [ ] Implement pad audio playback
-- [ ] Handle `keydown` and `keyup`
-- [ ] Support mouse and keyboard triggering
-- [ ] Verify playback behavior
+- [x] Add drum sound assets
+- [x] Implement pad audio playback
+- [x] Handle `keydown` and `keyup`
+- [x] Support mouse and keyboard triggering
+- [x] Verify playback behavior
 
 Commit: `feat(hw1): add drum audio playback`
 
