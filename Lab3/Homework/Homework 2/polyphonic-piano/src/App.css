@@ -1,41 +1,207 @@
 
+:root {
+  font-family: "Trebuchet MS", Arial, sans-serif;
+  color: #173c46;
+  background: #fff6e6;
+  font-synthesis: none;
+}
+
 * {
   box-sizing: border-box;
 }
 
 body {
   margin: 0;
-  background: #101827;
-  color: #f8fafc;
-  font-family: Arial, sans-serif;
+  min-width: 320px;
+}
+
+button {
+  font: inherit;
 }
 
 .app {
-  padding: 30px 20px;
-  text-align: center;
+  width: min(1380px, 100%);
+  margin: 0 auto;
+  padding: 32px 36px 24px;
 }
 
-h1 {
+/* Brand */
+
+.masthead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 44px;
+}
+
+.eyebrow {
+  font-family: monospace;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #d45a3a;
+}
+
+.brand h1 {
+  margin: 4px 0 0;
+  font-family: Impact, "Arial Black", sans-serif;
+  font-size: clamp(56px, 8vw, 108px);
+  line-height: 0.95;
+  letter-spacing: -2px;
+}
+
+.brand-dot {
+  color: #d45a3a;
+}
+
+.brand p {
+  margin: 14px 0 0;
+  font-size: 16px;
+}
+
+.edition {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 5px;
+  font-family: monospace;
+  font-size: 12px;
+  letter-spacing: 1px;
+}
+
+.edition strong {
+  background: #173c46;
+  color: #fff6e6;
+  padding: 8px 12px;
+}
+
+/* Instrument */
+
+.instrument {
+  padding: 28px;
+  background: #fffdf5;
+  border: 2px solid #173c46;
+  box-shadow: 9px 9px 0 #173c46;
+}
+
+.instrument-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.instrument-heading h2 {
+  margin: 8px 0 0;
+  font-family: Georgia, serif;
+  font-style: italic;
+  font-size: clamp(26px, 4vw, 40px);
+}
+
+.live-indicator {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-family: monospace;
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.live-light {
+  width: 11px;
+  height: 11px;
+  background: #39a88d;
+  border-radius: 50%;
+  box-shadow: 0 0 0 4px #d4eee5;
+}
+
+/* Status panels */
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 32px;
+}
+
+.stat {
+  min-height: 112px;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.stat-yellow {
+  background: #f9d66b;
+}
+
+.stat-mint {
+  background: #b6e0d5;
+}
+
+.stat-pink {
+  background: #f2b4a4;
+}
+
+.stat > span {
+  font-family: monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.stat strong {
+  font-family: Impact, "Arial Black", sans-serif;
+  font-size: clamp(25px, 3vw, 42px);
+  font-weight: 700;
+  line-height: 1;
+}
+
+.stat small {
+  font-family: monospace;
+  font-size: 14px;
+}
+
+/* Piano */
+
+.keyboard-label,
+.keyboard-footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-family: monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.keyboard-label {
   margin-bottom: 10px;
 }
 
-header p {
-  color: #94a3b8;
+.keyboard-footer {
+  margin-top: 12px;
+  color: #667b7e;
 }
 
 .piano-scroll {
   overflow-x: auto;
-  margin-top: 25px;
-  padding: 15px;
-  background: #263449;
-  border-radius: 12px;
+  padding: 16px;
+  background: #173c46;
+  border: 4px solid #173c46;
+  scrollbar-color: #d45a3a #173c46;
 }
 
 .piano-keyboard {
   display: flex;
+  position: relative;
   width: max-content;
   height: 220px;
-  margin: auto;
+  user-select: none;
 }
 
 .piano-key {
@@ -43,16 +209,18 @@ header p {
   padding: 0;
   cursor: pointer;
   touch-action: none;
+  transition: background-color 70ms;
 }
 
 .piano-key.white {
   width: 32px;
   height: 220px;
   flex: 0 0 32px;
-  background: white;
-  color: #334155;
-  border: 1px solid #94a3b8;
-  border-radius: 0 0 5px 5px;
+  background: #fffaf0;
+  border: 1px solid #173c46;
+  border-radius: 0 0 4px 4px;
+  color: #173c46;
+  z-index: 1;
 }
 
 .piano-key.black {
@@ -61,19 +229,20 @@ header p {
   flex: 0 0 20px;
   margin-left: -10px;
   margin-right: -10px;
-  background: #111827;
-  color: white;
-  border: 1px solid #000;
-  border-radius: 0 0 4px 4px;
+  background: #19333b;
+  border: 1px solid #091d24;
+  border-radius: 0 0 3px 3px;
+  color: #fff6e6;
   z-index: 2;
+  box-shadow: 2px 4px 0 #0d242a;
 }
 
 .piano-key.white.pressed {
-  background: #93c5fd;
+  background: #f9d66b;
 }
 
 .piano-key.black.pressed {
-  background: #2563eb;
+  background: #d45a3a;
 }
 
 .piano-key span {
@@ -81,49 +250,123 @@ header p {
   bottom: 10px;
   left: 50%;
   transform: translateX(-50%);
+  font-family: monospace;
   font-size: 9px;
   pointer-events: none;
 }
 
 .piano-key:focus-visible {
-  outline: 3px solid #facc15;
-  outline-offset: 2px;
+  outline: 3px solid #d45a3a;
+  outline-offset: 3px;
 }
 
-@media (max-width: 600px) {
-  .app {
-    padding: 20px 10px;
-  }
+/* Sequencer preview */
 
-  .piano-keyboard {
-    margin: 0;
-  }
-}
-
-
-.status-panel {
+.sequencer-preview {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
+  align-items: flex-end;
   gap: 24px;
-  margin: 24px 0;
-  flex-wrap: wrap;
+  margin-top: 44px;
+  padding: 30px 0;
+  border-top: 2px solid #173c46;
+  border-bottom: 2px solid #173c46;
 }
 
-.status-panel p {
-  padding: 12px 20px;
-  background: #1e293b;
-  border: 1px solid #334155;
-  border-radius: 10px;
+.sequencer-preview h2 {
+  margin: 10px 0;
+  font-family: Georgia, serif;
+  font-size: clamp(28px, 4vw, 44px);
+  font-style: italic;
 }
 
-.status-panel strong {
-  color: #60a5fa;
+.sequencer-preview p {
+  max-width: 420px;
+  margin-bottom: 0;
+  line-height: 1.6;
 }
 
-.piano-key.white.pressed {
-  background: #93c5fd;
+.preview-label {
+  padding: 12px;
+  background: #d45a3a;
+  color: white;
+  font-family: monospace;
+  font-weight: 700;
+  white-space: nowrap;
 }
 
-.piano-key.black.pressed {
-  background: #2563eb;
+/* Footer */
+
+.site-footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding-top: 30px;
+  font-family: monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+/* Responsive */
+
+@media (max-width: 650px) {
+  .app {
+    padding: 22px 14px;
+  }
+
+  .masthead {
+    align-items: flex-start;
+    margin-bottom: 30px;
+  }
+
+  .edition {
+    font-size: 9px;
+  }
+
+  .instrument {
+    padding: 14px;
+    box-shadow: 5px 5px 0 #173c46;
+  }
+
+  .stats {
+    gap: 6px;
+  }
+
+  .stat {
+    padding: 10px;
+    min-height: 95px;
+  }
+
+  .stat > span {
+    font-size: 9px;
+  }
+
+  .stat strong {
+    font-size: 24px;
+  }
+
+  .keyboard-label,
+  .keyboard-footer {
+    font-size: 9px;
+  }
+
+  .piano-scroll {
+    padding: 8px;
+  }
+
+  .sequencer-preview {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .site-footer {
+    flex-direction: column;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .piano-key {
+    transition: none;
+  }
 }
