@@ -31,7 +31,7 @@ An accessible, interactive drum kit application modernizing the legacy JavaScrip
 
 ![Homework 1 Demo](./demos/homework1.gif)
 
-**[View Source Code](./Homework/Homework%201/)**
+**[View Source Code](./Homework%201/drum-studio/)**
 
 ---
 
@@ -62,7 +62,7 @@ An interactive 88-key digital piano demonstrating polyphonic audio synthesis, ef
 
 ![Homework 2 Demo](./demos/homework2.gif)
 
-**[View Source Code](./Homework/Homework%202/)**
+**[View Source Code](./Homework%202/polyphonic-piano/)**
 
 ---
 
@@ -94,7 +94,7 @@ A PUBG-inspired esports platform combining championship standings, real-time kil
 
 ![Homework 3 Demo](./demos/homework3.gif)
 
-**[View Source Code](./Homework/Homework%203/)**
+**[View Source Code](./Homework%203/)**
 
 ---
 
