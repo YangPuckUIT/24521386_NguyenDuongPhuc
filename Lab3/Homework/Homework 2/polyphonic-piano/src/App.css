@@ -370,3 +370,234 @@ button {
     transition: none;
   }
 }
+
+
+/* Sequencer */
+
+.sequencer {
+  margin-top: 44px;
+  padding: 30px;
+  background: #b6e0d5;
+  border: 2px solid #173c46;
+  box-shadow: 8px 8px 0 #173c46;
+}
+
+.sequencer-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.sequencer h2 {
+  margin: 10px 0;
+  font-family: Georgia, serif;
+  font-size: clamp(28px, 4vw, 44px);
+  font-style: italic;
+}
+
+.sequencer-header p {
+  margin: 0;
+  line-height: 1.5;
+}
+
+.sequence-status {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 10px 14px;
+  background: #173c46;
+  color: #fff6e6;
+  font: 700 12px monospace;
+  letter-spacing: 1px;
+}
+
+.status-light {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #94a3b8;
+}
+
+.status-light.is-recording {
+  background: #ff715b;
+  animation: record-pulse 1s infinite;
+}
+
+.status-light.is-playing {
+  background: #f9d66b;
+}
+
+@keyframes record-pulse {
+  50% {
+    opacity: 0.3;
+  }
+}
+
+/* Digital display */
+
+.sequence-display {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin: 28px 0;
+}
+
+.sequence-display > div {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px;
+  background: #173c46;
+  color: #f9d66b;
+}
+
+.sequence-display span {
+  font: 700 11px monospace;
+  letter-spacing: 1px;
+}
+
+.sequence-display strong {
+  font: 700 clamp(32px, 5vw, 56px) Impact, sans-serif;
+}
+
+/* Buttons */
+
+.sequence-controls {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 18px;
+  align-items: end;
+}
+
+.record-controls,
+.playback-controls {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.control-button {
+  min-height: 46px;
+  padding: 12px 16px;
+  border: 2px solid #173c46;
+  background: #fff6e6;
+  color: #173c46;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 3px 3px 0 #173c46;
+}
+
+.control-button:active:not(:disabled) {
+  box-shadow: none;
+  transform: translate(3px, 3px);
+}
+
+.control-button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.record-button {
+  background: #e97861;
+  color: #173c46;
+}
+
+.record-button span {
+  margin-right: 8px;
+}
+
+.play-button {
+  background: #f9d66b;
+}
+
+.stop-button {
+  background: #173c46;
+  color: #fff6e6;
+}
+
+/* Tempo selector */
+
+.speed-control {
+  display: flex;
+  gap: 5px;
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+.speed-control legend {
+  margin-bottom: 10px;
+  font: 700 12px monospace;
+  text-transform: uppercase;
+}
+
+.speed-control button {
+  padding: 12px;
+  border: 2px solid #173c46;
+  background: #fff6e6;
+  color: #173c46;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.speed-control button.selected {
+  background: #173c46;
+  color: #fff6e6;
+}
+
+.speed-control:disabled {
+  opacity: 0.6;
+}
+
+.sequence-hint {
+  margin: 26px 0 0;
+  padding-top: 16px;
+  border-top: 1px solid #60988b;
+  font-size: 13px;
+}
+
+.control-button:focus-visible,
+.speed-control button:focus-visible {
+  outline: 3px solid #d45a3a;
+  outline-offset: 4px;
+}
+
+@media (max-width: 900px) {
+  .sequence-controls {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 650px) {
+  .sequencer {
+    padding: 18px;
+    box-shadow: 5px 5px 0 #173c46;
+  }
+
+  .sequencer-header {
+    flex-direction: column;
+  }
+
+  .sequence-display > div {
+    padding: 14px;
+  }
+
+  .record-controls,
+  .playback-controls {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .control-button {
+    padding: 10px;
+    font-size: 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .status-light.is-recording {
+    animation: none;
+  }
+}
