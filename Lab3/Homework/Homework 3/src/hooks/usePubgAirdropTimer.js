@@ -1,25 +1,16 @@
 import { useEffect, useState } from 'react'
 
-function calculateRemaining(targetEpochMs, serverOffsetMs) {
-  return Math.max(
-    0,
-    targetEpochMs - (Date.now() + serverOffsetMs)
-  )
-}
-
 export function usePubgAirdropTimer(
   targetEpochMs,
   serverOffsetMs = 0
 ) {
-  const [remainingMs, setRemainingMs] = useState(() =>
-    calculateRemaining(targetEpochMs, serverOffsetMs)
+  const [nowEpochMs, setNowEpochMs] = useState(
+    () => Date.now() + serverOffsetMs
   )
 
   useEffect(() => {
     const syncClock = () => {
-      setRemainingMs(
-        calculateRemaining(targetEpochMs, serverOffsetMs)
-      )
+      setNowEpochMs(Date.now() + serverOffsetMs)
     }
 
     syncClock()
@@ -40,8 +31,14 @@ export function usePubgAirdropTimer(
     }
   }, [targetEpochMs, serverOffsetMs])
 
+  const remainingMs = Math.max(
+    0,
+    targetEpochMs - nowEpochMs
+  )
+
   return {
     remainingMs,
     isLive: remainingMs === 0,
+    nowEpochMs,
   }
 }

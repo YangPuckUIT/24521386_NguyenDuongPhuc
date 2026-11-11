@@ -2,6 +2,7 @@ import { useState } from 'react'
 import AirdropCountdown from './AirdropCountdown'
 import { usePubgAirdropTimer } from '../hooks/usePubgAirdropTimer'
 import { useOptimisticClaim } from '../hooks/useOptimisticClaim'
+import { getDropPhase } from '../utils/dropPhase'
 
 const vndFormatter = new Intl.NumberFormat('vi-VN', {
   style: 'currency',
@@ -14,9 +15,9 @@ export default function DropCard({ drop }) {
 
   const [scenario, setScenario] = useState('success')
 
-  const { remainingMs } = usePubgAirdropTimer(
-    drop.dropEpochMs
-  )
+const { nowEpochMs } = usePubgAirdropTimer(
+  drop.dropEpochMs
+)
 
   const {
     stock,
@@ -26,12 +27,12 @@ export default function DropCard({ drop }) {
     claim,
   } = useOptimisticClaim(drop.remainingStock)
 
-  const phase =
-    remainingMs > 0
-      ? 'WARMUP'
-      : stock <= 0
-        ? 'LOOTED_OUT'
-        : 'AIRDROP_LIVE'
+const phase = getDropPhase({
+  dropEpochMs: drop.dropEpochMs,
+  expiresEpochMs: drop.expiresEpochMs,
+  remainingStock: stock,
+  nowEpochMs: Date.now(),
+})
 
   const canClaim =
     phase === 'AIRDROP_LIVE' && !isClaiming
@@ -64,9 +65,10 @@ export default function DropCard({ drop }) {
         <h3>{drop.title}</h3>
         <p>{drop.subtitle}</p>
 
-        <AirdropCountdown
-          targetEpochMs={drop.dropEpochMs}
-        />
+<AirdropCountdown
+  targetEpochMs={drop.dropEpochMs}
+  phase={phase}
+/>
 
         <div className="drop-details">
           <div>

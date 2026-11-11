@@ -71,16 +71,16 @@ Commit: `feat(hw3): add PVS leaderboard and kill feed`
 
 ## Phase 6: Testing and AI Audit
 
-- [ ] Test timer accuracy
-- [ ] Test visibilitychange behavior
-- [ ] Test duplicate claim prevention
-- [ ] Test HTTP 409 rollback
-- [ ] Test leaderboard sorting and filtering
-- [ ] Check accessibility and responsiveness
-- [ ] Document at least 3 actual AI failures
-- [ ] Run production build
-- [ ] Update TASK_DECOMPOSITION.md
-- [ ] Commit testing and audit
+- [x] Test timer accuracy
+- [x] Test visibilitychange behavior
+- [x] Test duplicate claim prevention
+- [x] Test HTTP 409 rollback
+- [x] Test leaderboard sorting and filtering
+- [x] Check accessibility and responsiveness
+- [x] Document at least 3 actual AI failures
+- [x] Run production build
+- [x] Update TASK_DECOMPOSITION.md
+- [x] Commit testing and audit
 
 Commit: `test(hw3): verify arena and document AI failures`
 

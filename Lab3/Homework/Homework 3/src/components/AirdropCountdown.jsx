@@ -18,30 +18,42 @@ function formatTime(remainingMs) {
   }
 }
 
+const PHASE_LABELS = {
+  WARMUP: 'WARMUP',
+  AIRDROP_LIVE: 'AIRDROP LIVE',
+  LOOTED_OUT: 'LOOTED OUT',
+  EXPIRED: 'DROP EXPIRED',
+}
+
 export default function AirdropCountdown({
   targetEpochMs,
-  serverOffsetMs = 0,
+  phase,
 }) {
-  const { remainingMs, isLive } = usePubgAirdropTimer(
-    targetEpochMs,
-    serverOffsetMs
-  )
-
+  const { remainingMs } = usePubgAirdropTimer(targetEpochMs)
   const time = formatTime(remainingMs)
 
   return (
     <section className="countdown" aria-label="Airdrop countdown">
       <div className="countdown-heading">
         <span>DROP STATUS</span>
-        <strong className={isLive ? 'status-live' : 'status-warmup'}>
-          {isLive ? 'AIRDROP LIVE' : 'WARMUP'}
+
+        <strong
+          className={
+            phase === 'AIRDROP_LIVE'
+              ? 'status-live'
+              : 'status-warmup'
+          }
+        >
+          {PHASE_LABELS[phase] ?? 'UNKNOWN'}
         </strong>
       </div>
 
-      {isLive ? (
-        <p className="countdown-live">DROP IS LIVE</p>
-      ) : (
-        <div className="countdown-units" role="timer" aria-label={`${time.days} days, ${time.hours} hours, ${time.minutes} minutes, ${time.seconds} seconds remaining`}>
+      {phase === 'WARMUP' ? (
+        <div
+          className="countdown-units"
+          role="timer"
+          aria-label={`${time.days} days, ${time.hours} hours, ${time.minutes} minutes, ${time.seconds} seconds remaining`}
+        >
           {Object.entries(time).map(([unit, value]) => (
             <div className="time-unit" key={unit}>
               <strong>{value}</strong>
@@ -49,6 +61,10 @@ export default function AirdropCountdown({
             </div>
           ))}
         </div>
+      ) : (
+        <p className="countdown-live">
+          {PHASE_LABELS[phase]}
+        </p>
       )}
     </section>
   )
