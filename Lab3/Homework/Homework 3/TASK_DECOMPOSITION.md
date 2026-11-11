@@ -59,13 +59,13 @@ Commit: `feat(hw3): implement optimistic loot claims`
 
 ## Phase 5: PUBG Vietnam Leaderboard
 
-- [ ] Add Vietnamese PUBG squads
-- [ ] Display WWCD, placement points, and kill points
-- [ ] Implement sorting
-- [ ] Implement squad filtering
-- [ ] Implement kill-feed filtering
-- [ ] Update TASK_DECOMPOSITION.md
-- [ ] Commit leaderboard feature
+- [x] Add Vietnamese PUBG squads
+- [x] Display WWCD, placement points, and kill points
+- [x] Implement sorting
+- [x] Implement squad filtering
+- [x] Implement kill-feed filtering
+- [x] Update TASK_DECOMPOSITION.md
+- [x] Commit leaderboard feature
 
 Commit: `feat(hw3): add PVS leaderboard and kill feed`
 
