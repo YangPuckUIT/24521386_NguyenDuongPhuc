@@ -262,3 +262,61 @@
     font-size: 8px;
   }
 }
+
+/* Phase 4: Optimistic Claim */
+
+.claim-controls {
+  display: grid;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.claim-controls label {
+  color: #b6c1b3;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+}
+
+.claim-controls select {
+  width: 100%;
+  padding: 12px;
+  background: #101711;
+  color: #f3d15b;
+  border: 1px solid #53634b;
+  font: inherit;
+  font-size: 12px;
+}
+
+.claim-controls select:focus-visible {
+  outline: 3px solid #ffd342;
+  outline-offset: 3px;
+}
+
+.claim-controls select:disabled {
+  opacity: 0.5;
+}
+
+.claim-button:not(:disabled):hover {
+  background: #ffdc64;
+}
+
+.claim-message {
+  min-height: 20px;
+  margin: 14px 0 0;
+  color: #aeb8ac;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.claim-success {
+  color: #80e5a0;
+}
+
+.claim-error {
+  color: #ff8b7d;
+}
+
+.claim-pending {
+  color: #f3d15b;
+}

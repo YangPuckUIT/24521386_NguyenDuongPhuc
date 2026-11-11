@@ -46,14 +46,14 @@ Commit: `feat(hw3): implement zero-drift airdrop timer`
 
 ## Phase 4: Optimistic Claim System
 
-- [ ] Implement optimistic stock deduction
-- [ ] Prevent duplicate claims using an in-flight lock
-- [ ] Handle successful claim responses
-- [ ] Roll back inventory on HTTP 409 Conflict
-- [ ] Handle network failures
-- [ ] Format ticket prices in VND
-- [ ] Update TASK_DECOMPOSITION.md
-- [ ] Commit claim feature
+- [x] Implement optimistic stock deduction
+- [x] Prevent duplicate claims using an in-flight lock
+- [x] Handle successful claim responses
+- [x] Roll back inventory on HTTP 409 Conflict
+- [x] Handle network failures
+- [x] Format ticket prices in VND
+- [x] Update TASK_DECOMPOSITION.md
+- [x] Commit claim feature
 
 Commit: `feat(hw3): implement optimistic loot claims`
 
