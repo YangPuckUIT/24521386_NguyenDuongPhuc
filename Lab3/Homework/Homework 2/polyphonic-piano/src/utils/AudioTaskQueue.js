@@ -9,20 +9,18 @@ export class AudioTaskQueue {
 
     if (
       !Number.isInteger(midi) ||
-      ![freqHz, durationMs, deltaMs].every(
-        (value) => Number.isFinite(value) && value >= 0
-      ) ||
-      freqHz === 0
+      !Number.isFinite(freqHz) ||
+      freqHz <= 0 ||
+      !Number.isFinite(durationMs) ||
+      durationMs < 0 ||
+      !Number.isFinite(deltaMs) ||
+      deltaMs < 0
     ) {
       throw new Error("Invalid audio task");
     }
 
-    this.tasks.push({
-      midi,
-      freqHz,
-      durationMs,
-      deltaMs,
-    });
+    // Keep the reference so recording can finalize duration.
+    this.tasks.push(task);
   }
 
   getAll() {
@@ -42,81 +40,73 @@ export class AudioTaskQueue {
       throw new Error("Unsupported replay speed");
     }
 
-    if (signal?.aborted) {
-      throw signal.reason;
-    }
-
     const tasks = this.getAll();
-    const pending = new Set();
+    const timers = new Set();
+    const releases = new Map();
 
-    const wait = (durationMs) =>
+    const abortError = () =>
+      new DOMException("Playback cancelled", "AbortError");
+
+    const wait = (ms) =>
       new Promise((resolve, reject) => {
         if (signal?.aborted) {
-          reject(signal.reason);
+          reject(abortError());
           return;
         }
 
         let timer;
 
-        const onAbort = () => {
-          cleanup();
-          reject(signal.reason);
-        };
-
         const cleanup = () => {
           clearTimeout(timer);
-          pending.delete(timer);
+          timers.delete(timer);
           signal?.removeEventListener("abort", onAbort);
+        };
+
+        const onAbort = () => {
+          cleanup();
+          reject(abortError());
         };
 
         timer = setTimeout(() => {
           cleanup();
           resolve();
-        }, durationMs);
+        }, ms);
 
-        pending.add(timer);
+        timers.add(timer);
         signal?.addEventListener("abort", onAbort, {
           once: true,
         });
       });
 
-    const releases = new Map();
-
     try {
-      const startTime = performance.now();
       let positionMs = 0;
-      let endTimeMs = 0;
+      let endMs = 0;
+      const startedAt = performance.now();
 
       for (const task of tasks) {
         positionMs += task.deltaMs / speed;
 
-        const remaining =
-          startTime + positionMs - performance.now();
+        await wait(Math.max(
+          0,
+          startedAt + positionMs - performance.now()
+        ));
 
-        await wait(Math.max(0, remaining));
+        if (signal?.aborted) throw abortError();
 
-        if (signal?.aborted) {
-          throw signal.reason;
-        }
-
-        // A repeated MIDI note replaces its previous voice.
         const previous = releases.get(task.midi);
 
         if (previous !== undefined) {
           clearTimeout(previous);
-          pending.delete(previous);
+          timers.delete(previous);
           releases.delete(task.midi);
           synth.noteOff(task.midi);
         }
 
-        const started = synth.noteOn(
-          task.midi,
-          task.freqHz
-        );
+        const started = synth.noteOn(task.midi, task.freqHz);
 
         if (started) {
           const timer = setTimeout(() => {
-            pending.delete(timer);
+            timers.delete(timer);
 
             if (releases.get(task.midi) === timer) {
               releases.delete(task.midi);
@@ -125,23 +115,21 @@ export class AudioTaskQueue {
           }, task.durationMs / speed);
 
           releases.set(task.midi, timer);
-          pending.add(timer);
+          timers.add(timer);
         }
 
-        endTimeMs = Math.max(
-          endTimeMs,
+        endMs = Math.max(
+          endMs,
           positionMs + task.durationMs / speed
         );
       }
 
-      await wait(
-        Math.max(
-          0,
-          startTime + endTimeMs - performance.now()
-        )
-      );
+      await wait(Math.max(
+        0,
+        startedAt + endMs - performance.now()
+      ));
     } finally {
-      for (const timer of pending) {
+      for (const timer of timers) {
         clearTimeout(timer);
       }
 
