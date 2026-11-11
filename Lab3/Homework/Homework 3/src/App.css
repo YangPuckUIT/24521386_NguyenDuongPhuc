@@ -175,3 +175,90 @@
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
 }
+
+/* Phase 3: Zero-drift airdrop countdown */
+
+.countdown {
+  margin-top: 24px;
+  padding: 18px;
+  background: #0d130f;
+  border: 1px solid #394536;
+}
+
+.countdown-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1.4px;
+  color: #a8b5a5;
+}
+
+.status-warmup {
+  color: #e9bd40;
+}
+
+.status-live {
+  color: #79df9b;
+}
+
+.countdown-units {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.time-unit {
+  min-width: 0;
+  text-align: center;
+  padding: 12px 4px;
+  background: #1b241d;
+  border: 1px solid #3c493b;
+}
+
+.time-unit strong {
+  display: block;
+  color: #f3d15b;
+  font-family: 'Barlow Condensed', Impact, sans-serif;
+  font-size: clamp(24px, 3vw, 38px);
+  font-variant-numeric: tabular-nums;
+}
+
+.time-unit small {
+  display: block;
+  margin-top: 5px;
+  color: #99a597;
+  font-size: 9px;
+  letter-spacing: 1px;
+}
+
+.countdown-live {
+  margin: 0;
+  padding: 18px;
+  background: #1a3928;
+  color: #9cf5b4;
+  text-align: center;
+  font-weight: 900;
+  letter-spacing: 2px;
+}
+
+@media (max-width: 375px) {
+  .countdown {
+    padding: 12px;
+  }
+
+  .countdown-units {
+    gap: 5px;
+  }
+
+  .time-unit strong {
+    font-size: 24px;
+  }
+
+  .time-unit small {
+    font-size: 8px;
+  }
+}

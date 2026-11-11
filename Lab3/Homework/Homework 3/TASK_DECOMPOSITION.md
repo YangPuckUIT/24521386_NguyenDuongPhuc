@@ -32,15 +32,15 @@ Commit: `feat(hw3): build esports arena interface`
 
 ## Phase 3: Zero-Drift Airdrop Timer
 
-- [ ] Implement usePubgAirdropTimer hook
-- [ ] Calculate countdown using Date.now()
-- [ ] Support serverOffsetMs
-- [ ] Handle visibilitychange resynchronization
-- [ ] Clean up interval and event listeners
-- [ ] Handle drop phase transitions
-- [ ] Test background tab behavior
-- [ ] Update TASK_DECOMPOSITION.md
-- [ ] Commit timer feature
+- [x] Implement usePubgAirdropTimer hook
+- [x] Calculate countdown using Date.now()
+- [x] Support serverOffsetMs
+- [x] Handle visibilitychange resynchronization
+- [x] Clean up interval and event listeners
+- [x] Handle drop phase transitions
+- [x] Test background tab behavior
+- [x] Update TASK_DECOMPOSITION.md
+- [x] Commit timer feature
 
 Commit: `feat(hw3): implement zero-drift airdrop timer`
 

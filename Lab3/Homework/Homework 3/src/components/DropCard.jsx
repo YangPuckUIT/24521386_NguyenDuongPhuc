@@ -1,3 +1,4 @@
+import AirdropCountdown from './AirdropCountdown'
 const vndFormatter = new Intl.NumberFormat('vi-VN', {
   style: 'currency',
   currency: 'VND',
@@ -22,7 +23,7 @@ export default function DropCard({ drop }) {
 
         <h3>{drop.title}</h3>
         <p>{drop.subtitle}</p>
-
+<AirdropCountdown targetEpochMs={drop.dropEpochMs} />
         <div className="drop-details">
           <div>
             <small>PRICE</small>
