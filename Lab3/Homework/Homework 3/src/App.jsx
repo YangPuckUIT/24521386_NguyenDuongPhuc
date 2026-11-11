@@ -1,122 +1,65 @@
-import { useState } from 'react'
-import heroImg from './assets/hero.png'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
+import ArenaHeader from './components/ArenaHeader'
+import HeroSection from './components/HeroSection'
+import DropCard from './components/DropCard'
+import Leaderboard from './components/Leaderboard'
+import { drops, standings, killFeed } from './data/arenaData'
 import './App.css'
 
-function App() {
-  const [count, setCount] = useState(0)
-
+export default function App() {
   return (
     <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
+      <ArenaHeader />
 
-      <div className="ticks"></div>
+      <main>
+        <HeroSection />
 
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
+        <section id="drops" className="content-section" aria-labelledby="drops-title">
+          <div className="section-heading">
+            <div>
+              <span className="eyebrow">LIMITED SUPPLY</span>
+              <h2 id="drops-title">THE AIRDROP ARENA</h2>
+            </div>
+            <span className="mock-label">DEMO INVENTORY</span>
+          </div>
 
-      <div className="ticks"></div>
-      <section id="spacer"></section>
+          <div className="drops-grid">
+            {drops.map((drop) => (
+              <DropCard key={drop.id} drop={drop} />
+            ))}
+          </div>
+        </section>
+
+        <div className="content-section lower-grid">
+          <Leaderboard standings={standings} />
+
+          <section id="killfeed" className="panel" aria-labelledby="feed-title">
+            <div className="section-heading">
+              <div>
+                <span className="eyebrow">BATTLEGROUND ACTIVITY</span>
+                <h2 id="feed-title">KILL FEED</h2>
+              </div>
+            </div>
+
+            <ol className="kill-feed">
+              {killFeed.map((event) => (
+                <li key={event.id}>
+                  <span className="feed-squad">{event.squad}</span>
+                  <strong>{event.player}</strong>
+                  <span className="feed-action">{event.action}</span>
+                  <strong>{event.target}</strong>
+                  <small>{event.weapon}</small>
+                </li>
+              ))}
+            </ol>
+            <p className="feed-note">Simulated match events for UI demonstration.</p>
+          </section>
+        </div>
+      </main>
+
+      <footer className="arena-footer">
+        <strong>PUBG VIETNAM ARENA</strong>
+        <span>Unofficial educational demo. Not affiliated with KRAFTON.</span>
+      </footer>
     </>
   )
 }
-
-export default App

@@ -10,23 +10,23 @@ Build a React 19 esports platform featuring a zero-drift countdown, optimistic t
 
 - [x] Initialize React 19 + Vite project
 - [x] Install dependencies
-- [ ] Verify development server
+- [x] Verify development server
 - [x] Create TASK_DECOMPOSITION.md
 - [x] Create AI_FAILURE_AUDIT.md
-- [ ] Verify production build
-- [ ] Commit project setup
+- [x] Verify production build
+- [x] Commit project setup
 
 Commit: `chore(hw3): initialize PUBG arena project`
 
 ## Phase 2: Esports Arena UI
 
-- [ ] Create reusable React components
-- [ ] Build PUBG-themed header and navigation
-- [ ] Build VIP Ticket and G-Coin Crate cards
-- [ ] Build leaderboard layout
-- [ ] Implement responsive layout at 375px
-- [ ] Update TASK_DECOMPOSITION.md
-- [ ] Commit UI feature
+- [x] Create reusable React components
+- [x] Build PUBG-themed header and navigation
+- [x] Build VIP Ticket and G-Coin Crate cards
+- [x] Build leaderboard layout
+- [x] Implement responsive layout at 375px
+- [x] Update TASK_DECOMPOSITION.md
+- [x] Commit UI feature
 
 Commit: `feat(hw3): build esports arena interface`
 
