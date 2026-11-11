@@ -117,22 +117,22 @@ Status: Not implemented
 
 ## 5. Implementation Progress
 
-| Step | Task                              | Status      |
-| ---- | --------------------------------- | ----------- |
-| 1    | Initialize React + Vite           | Completed   |
-| 2    | Create project structure          | Completed   |
-| 3    | Generate 88 MIDI notes            | Completed   |
-| 4    | Implement memoized PianoKey       | Completed   |
-| 5    | Render piano keyboard             | Completed   |
-| 6    | Implement PolyphonicSynth         | Implemented |
-| 7    | Implement FIFO AudioTaskQueue     | Implemented |
-| 7.1  | Redesign UI with KEYCLUB theme    | Implemented |
-| 8    | Implement recording and replay UI | Pending     |
-| 9    | Integrate AbortController with UI | Pending     |
-| 10   | Extract usePiano hook             | Pending     |
-| 11   | Verify React.memo isolation       | Pending     |
-| 12   | Test concurrency and cleanup      | Pending     |
-| 13   | Production build verification     | Pending     |
+| Step | Task                                   | Status      |
+| ---- | -------------------------------------- | ----------- |
+| 1    | Initialize React + Vite                | Completed   |
+| 2    | Create project structure               | Completed   |
+| 3    | Generate 88 MIDI notes                 | Completed   |
+| 4    | Implement memoized PianoKey            | Completed   |
+| 5    | Render 88-key keyboard                 | Completed   |
+| 6    | Implement PolyphonicSynth              | Implemented |
+| 7    | Implement FIFO AudioTaskQueue          | Implemented |
+| 7.1  | Redesign UI as KEYCLUB                 | Completed   |
+| 8    | Implement recording and replay         | Implemented |
+| 9    | Integrate AbortController cancellation | Implemented |
+| 10   | Extract usePiano hook                  | Implemented |
+| 11   | Verify React.memo render isolation     | Pending     |
+| 12   | Test concurrency and resource cleanup  | Pending     |
+| 13   | Production build verification          | Pending     |
 
 ## 6. Functional Requirements
 
@@ -266,3 +266,31 @@ Tasks:
 - Build interactive sequencer controls.
 - Add playback speed selection.
 - Implement Stop Sequence.
+
+### 2026-11-11 - Step 8
+
+Implemented:
+
+- Added recording lifecycle to usePiano.
+- Captured MIDI, frequency, duration and delta time.
+- Integrated AudioTaskQueue with PolyphonicSynth.
+- Added recording and playback controls.
+- Added 0.5x, 1.0x and 2.0x speed selection.
+- Connected Stop Sequence to AbortController.
+- Added voice-end callback for FIFO voice stealing.
+- Replaced sequencer preview with interactive controls.
+- Added KEYCLUB sequencer styling.
+- Added responsive controls for mobile.
+
+Pending verification:
+
+- Rapid repeated-note playback.
+- Abort during AudioContext initialization.
+- React StrictMode cleanup.
+- React.memo Profiler verification.
+- Full concurrency and audio resource testing.
+
+Next:
+Step 11 - React.memo Profiler verification.
+Step 12 - Concurrency and cleanup tests.
+Step 13 - Production build and final verification.
