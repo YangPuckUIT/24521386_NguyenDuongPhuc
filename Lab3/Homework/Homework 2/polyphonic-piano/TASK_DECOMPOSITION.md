@@ -117,22 +117,22 @@ Status: Not implemented
 
 ## 5. Implementation Progress
 
-| Step | Task                                   | Status      |
-| ---- | -------------------------------------- | ----------- |
-| 1    | Initialize React + Vite                | Completed   |
-| 2    | Create project structure               | Completed   |
-| 3    | Generate 88 MIDI notes                 | Completed   |
-| 4    | Implement memoized PianoKey            | Completed   |
-| 5    | Render 88-key keyboard                 | Completed   |
-| 6    | Implement PolyphonicSynth              | Implemented |
-| 7    | Implement FIFO AudioTaskQueue          | Implemented |
-| 7.1  | Redesign UI as KEYCLUB                 | Completed   |
-| 8    | Implement recording and replay         | Implemented |
-| 9    | Integrate AbortController cancellation | Implemented |
-| 10   | Extract usePiano hook                  | Implemented |
-| 11   | Verify React.memo render isolation     | Pending     |
-| 12   | Test concurrency and resource cleanup  | Pending     |
-| 13   | Production build verification          | Pending     |
+| Step | Task                                   | Status    |
+| ---- | -------------------------------------- | --------- |
+| 1    | Initialize React + Vite                | Completed |
+| 2    | Create project structure               | Completed |
+| 3    | Generate 88 MIDI notes                 | Completed |
+| 4    | Implement memoized PianoKey            | Completed |
+| 5    | Render 88-key keyboard                 | Completed |
+| 6    | Implement PolyphonicSynth              | Completed |
+| 7    | Implement FIFO AudioTaskQueue          | Completed |
+| 7.1  | Redesign UI as KEYCLUB                 | Completed |
+| 8    | Implement recording and replay         | Completed |
+| 9    | Integrate AbortController cancellation | Completed |
+| 10   | Extract usePiano hook                  | Completed |
+| 11   | Verify React.memo render isolation     | Completed |
+| 12   | Test concurrency and resource cleanup  | Completed |
+| 13   | Production build verification          | Completed |
 
 ## 6. Functional Requirements
 
@@ -157,23 +157,23 @@ Status: Not implemented
 
 ### FIFO Sequencer
 
-- [ ] Record MIDI and frequency
-- [ ] Record durationMs and deltaMs
-- [ ] Store events in FIFO order
-- [ ] Replay asynchronously
-- [ ] Support 0.5x speed
-- [ ] Support 1.0x speed
-- [ ] Support 2.0x speed
-- [ ] Cancel replay with AbortController
-- [ ] Stop active oscillators on cancellation
+- [x] Record MIDI and frequency
+- [x] Record durationMs and deltaMs
+- [x] Store events in FIFO order
+- [x] Replay asynchronously
+- [x] Support 0.5x speed
+- [x] Support 1.0x speed
+- [x] Support 2.0x speed
+- [x] Cancel replay with AbortController
+- [x] Stop active oscillators on cancellation
 
 ### Performance and Cleanup
 
-- [ ] Verify render isolation with React Profiler
-- [ ] Verify no more than 8 active voices
-- [ ] Verify cleanup on unmount
-- [ ] Verify no stuck notes
-- [ ] Verify production build
+- [x] Verify render isolation with React Profiler
+- [x] Verify no more than 8 active voices
+- [x] Verify cleanup on unmount
+- [x] Verify no stuck notes
+- [x] Verify production build
 
 ## 7. Architecture
 
