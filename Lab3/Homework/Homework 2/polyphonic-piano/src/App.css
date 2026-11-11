@@ -1,0 +1,129 @@
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #101827;
+  color: #f8fafc;
+  font-family: Arial, sans-serif;
+}
+
+.app {
+  padding: 30px 20px;
+  text-align: center;
+}
+
+h1 {
+  margin-bottom: 10px;
+}
+
+header p {
+  color: #94a3b8;
+}
+
+.piano-scroll {
+  overflow-x: auto;
+  margin-top: 25px;
+  padding: 15px;
+  background: #263449;
+  border-radius: 12px;
+}
+
+.piano-keyboard {
+  display: flex;
+  width: max-content;
+  height: 220px;
+  margin: auto;
+}
+
+.piano-key {
+  position: relative;
+  padding: 0;
+  cursor: pointer;
+  touch-action: none;
+}
+
+.piano-key.white {
+  width: 32px;
+  height: 220px;
+  flex: 0 0 32px;
+  background: white;
+  color: #334155;
+  border: 1px solid #94a3b8;
+  border-radius: 0 0 5px 5px;
+}
+
+.piano-key.black {
+  width: 20px;
+  height: 135px;
+  flex: 0 0 20px;
+  margin-left: -10px;
+  margin-right: -10px;
+  background: #111827;
+  color: white;
+  border: 1px solid #000;
+  border-radius: 0 0 4px 4px;
+  z-index: 2;
+}
+
+.piano-key.white.pressed {
+  background: #93c5fd;
+}
+
+.piano-key.black.pressed {
+  background: #2563eb;
+}
+
+.piano-key span {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 9px;
+  pointer-events: none;
+}
+
+.piano-key:focus-visible {
+  outline: 3px solid #facc15;
+  outline-offset: 2px;
+}
+
+@media (max-width: 600px) {
+  .app {
+    padding: 20px 10px;
+  }
+
+  .piano-keyboard {
+    margin: 0;
+  }
+}
+
+
+.status-panel {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin: 24px 0;
+  flex-wrap: wrap;
+}
+
+.status-panel p {
+  padding: 12px 20px;
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 10px;
+}
+
+.status-panel strong {
+  color: #60a5fa;
+}
+
+.piano-key.white.pressed {
+  background: #93c5fd;
+}
+
+.piano-key.black.pressed {
+  background: #2563eb;
+}
