@@ -50,15 +50,15 @@
 
 ## Phase 5 - Verification
 
-- [ ] Test all three channels
-- [ ] Test POST validation
-- [ ] Test rapid channel switching
-- [ ] Test slow network
-- [ ] Verify AbortController cleanup
-- [ ] Verify CORS configuration
-- [ ] Run frontend lint
-- [ ] Run frontend build
-- [ ] Capture screenshots
+- [x] Test all three channels
+- [x] Test POST validation
+- [x] Test rapid channel switching
+- [x] Test slow network
+- [x] Verify AbortController cleanup
+- [x] Verify CORS configuration
+- [x] Run frontend lint
+- [x] Run frontend build
+- [x] Capture screenshots
 - [ ] Final documentation commit
 
 ## Progress Log
@@ -75,4 +75,8 @@
 
 - Phase 1: aae6976. Phase 2: daf97a2. Phase 3: 712960c (existing commit preserved).
 - Phase 4: FREQUENCY interface, accessible channel buttons, stateful feed, validated composer, responsive CSS, abortable POST cleanup and validated API responses.
-- Phase 4 lint and production build passed; mounted browser verification in progress.
+- Phase 4 commit: 8825629. Lint and build passed.
+- Phase 5: Node API checks and Chromium mounted-browser checks passed on 2026-11-13. Slow network and unavailable API were simulated with browser routing.
+- Screenshots captured at desktop, tablet and 375px mobile; desktop/mobile visually reviewed. No horizontal overflow at 375/768/1440px across all channels.
+- No live-API console errors or unhandled browser exceptions. Two expected network console errors occurred during injected failures.
+- Verification scripts live in tests/; reproduction and coverage are documented in README.md.
