@@ -41,7 +41,7 @@
 
 ### Task 5: Git
 
-- [ ] Commit Exercise 1.2 implementation and styling
+- [x] Commit Exercise 1.2 implementation and styling
 - [ ] Commit verification documentation
 
 ## Upcoming Exercises
@@ -74,7 +74,7 @@
 | 4    | Editorial UI redesign                | Completed |
 | 5    | Dark-mode contrast fix               | Completed |
 | 6    | Performance and build verification   | Pending   |
-| 7    | Git commit                           | Pending   |
+| 7    | Git commit                           | Completed |
 
 ## Notes
 
