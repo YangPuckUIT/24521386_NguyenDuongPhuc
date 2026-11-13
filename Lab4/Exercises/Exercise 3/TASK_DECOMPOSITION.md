@@ -5,7 +5,7 @@
 **Lab:** Lab 4
 **Exercise:** 1.7.1 - Full-stack Forum
 **Sprint:** 3 - Forum API Integration
-**Status:** In Progress
+**Status:** Completed (2026-11-13)
 
 ## Phase 1 - Project Setup
 
@@ -59,7 +59,7 @@
 - [x] Run frontend lint
 - [x] Run frontend build
 - [x] Capture screenshots
-- [ ] Final documentation commit
+- [x] Final documentation commit
 
 ## Progress Log
 
@@ -69,7 +69,7 @@
 | 2    | Express Forum API | Complete    |
 | 3    | useForumMessages  | Complete    |
 | 4    | Forum interface   | Complete    |
-| 5    | Verification      | In Progress |
+| 5    | Verification      | Complete    |
 
 ## Implementation Notes
 
@@ -80,3 +80,5 @@
 - Screenshots captured at desktop, tablet and 375px mobile; desktop/mobile visually reviewed. No horizontal overflow at 375/768/1440px across all channels.
 - No live-API console errors or unhandled browser exceptions. Two expected network console errors occurred during injected failures.
 - Verification scripts live in tests/; reproduction and coverage are documented in README.md.
+- Phase 5 verification commit: 0545237. Final documentation follows in a dedicated docs commit (see Git history).
+- Optional checks not performed: screen-reader review, other browser engines, physical mobile hardware and manual DevTools throttling. Automated Chromium delay/failure routing covers the required slow-network and recovery scenarios.
