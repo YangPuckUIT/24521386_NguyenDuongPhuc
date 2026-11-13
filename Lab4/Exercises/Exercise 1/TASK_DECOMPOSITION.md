@@ -28,15 +28,15 @@
 - [x] Add aria-busy and aria-live attributes
 - [x] Implement responsive editorial UI
 - [x] Fix dark-mode contrast issue
-- [ ] Verify CLS = 0 during lazy loading
+- [x] Verify CLS = 0 during lazy loading
 
 ### Task 4: Verification
 
-- [ ] Verify lazy-loaded JavaScript chunk in DevTools
+- [x] Verify lazy-loaded JavaScript chunk in DevTools
 - [ ] Verify Skeleton under network throttling
 - [ ] Verify no unexpected layout shifts
-- [ ] Run npm run build successfully
-- [ ] Run npm run lint successfully
+- [x] Run npm run build successfully
+- [x] Run npm run lint successfully
 - [ ] Capture verification screenshots
 
 ### Task 5: Git
@@ -73,7 +73,7 @@
 | 3    | Lazy Loading and Suspense            | Completed |
 | 4    | Editorial UI redesign                | Completed |
 | 5    | Dark-mode contrast fix               | Completed |
-| 6    | Performance and build verification   | Pending   |
+| 6    | Performance and build verification   | Completed |
 | 7    | Git commit                           | Completed |
 | 8    | React Router v7 navigation           | Completed |
 | 9    | Nested layout and NavLink            | Completed |
