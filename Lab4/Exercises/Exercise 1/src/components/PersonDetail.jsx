@@ -1,13 +1,29 @@
 
-export default function PersonDetail({ person }) {
+import { useParams, Link } from "react-router";
+import { PEOPLE } from "../data/people";
+
+export default function PersonDetail() {
+  const { id } = useParams();
+
+  const person = PEOPLE.find((item) => item.id === id);
+
   if (!person) {
-    return <p role="alert">Person not found.</p>;
+    return (
+      <article className="not-found" role="alert">
+        <p className="eyebrow">Archive / Error 404</p>
+        <h2>Record not found.</h2>
+        <p>
+          The requested person does not exist in this directory.
+        </p>
+        <Link to="/">Return to directory</Link>
+      </article>
+    );
   }
 
   return (
     <article className="person-detail">
       <header>
-        <p className="eyebrow">PERSON DOSSIER</p>
+        <p className="eyebrow">Archive / Person Dossier</p>
         <h2>{person.name}</h2>
         <p>{person.role}</p>
       </header>
