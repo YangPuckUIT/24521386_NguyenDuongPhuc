@@ -1,0 +1,13 @@
+
+:root {
+  color-scheme: light;
+}
+
+html {
+  background-color: #f4f2eb;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+}
