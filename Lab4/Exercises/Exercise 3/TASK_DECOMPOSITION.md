@@ -21,12 +21,14 @@
 
 ## Phase 2 - Express Forum API
 
-- [ ] Implement GET messages endpoint
-- [ ] Implement POST messages endpoint
-- [ ] Validate POST request body
-- [ ] Configure CORS
-- [ ] Implement channel support
-- [ ] Test API responses
+## Phase 2 - Express Forum API
+
+- [x] Implement GET messages endpoint
+- [x] Implement POST messages endpoint
+- [x] Validate POST request body
+- [x] Configure CORS
+- [x] Implement channel support
+- [x] Test API responses
 - [ ] Commit backend API
 
 ## Phase 3 - useForumMessages Hook
