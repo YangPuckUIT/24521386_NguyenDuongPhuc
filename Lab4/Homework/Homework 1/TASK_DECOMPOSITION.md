@@ -60,11 +60,11 @@ The application supports keyboard and pointer interactions, undo functionality, 
 
 ### Phase 6: Full-Stack Integration
 
-- [ ] Connect frontend with backend APIs.
-- [ ] Load profiles from MongoDB.
-- [ ] Persist swipe actions.
-- [ ] Retrieve swipe history.
-- [ ] Verify data persistence after reload.
+- [x] Connect frontend with backend APIs.
+- [x] Load profiles from MongoDB.
+- [x] Persist swipe actions.
+- [x] Retrieve swipe history.
+- [x] Verify data persistence after reload.
 
 ### Phase 7: Testing and Documentation
 
