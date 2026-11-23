@@ -23,4 +23,32 @@ const getProfileById = async (req, res) => {
   }
 };
 
-module.exports = { getProfiles, getProfileById };
+const createProfile = async (req, res) => {
+  try {
+    const { name, age, bio, imageUrl, interests } = req.body || {};
+
+    if (!name || !age || !imageUrl) {
+      return res.status(400).json({
+        message: "Name, age and imageUrl are required",
+      });
+    }
+
+    const profile = await Profile.create({
+      name,
+      age,
+      bio,
+      imageUrl,
+      interests,
+    });
+
+    res.status(201).json(profile);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+};
+
+module.exports = {
+  getProfiles,
+  getProfileById,
+  createProfile,
+};
