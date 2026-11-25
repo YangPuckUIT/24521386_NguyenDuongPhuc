@@ -1,4 +1,6 @@
 import { useParams } from "react-router";
+import Forum from "../components/Forum";
+import SlaCountdown from "../components/SlaCountdown";
 
 export default function PersonDetail({ people }) {
   const { id } = useParams();
@@ -18,6 +20,8 @@ export default function PersonDetail({ people }) {
       <h1>{person.name}</h1>
       <p>Player appeal dossier</p>
 
+      <SlaCountdown deadline={new Date(person.slaDeadline).getTime()} />
+
       <dl className="person-details">
         <dt>Role</dt>
         <dd>{person.role}</dd>
@@ -34,6 +38,8 @@ export default function PersonDetail({ people }) {
         <dt>Status</dt>
         <dd>{person.status}</dd>
       </dl>
+
+      <Forum forumId={person.id} />
     </section>
   );
 }
