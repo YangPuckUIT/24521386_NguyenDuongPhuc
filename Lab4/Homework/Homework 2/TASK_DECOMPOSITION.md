@@ -8,13 +8,13 @@ Build a full-stack React and Express application for managing esports fair-play 
 
 ### Sprint 1 — Multi-Route Dossier Navigation
 
-- [ ] Set up React Router v7.
-- [ ] Implement `PeopleLayout.jsx` with nested routes and `<Outlet />`.
-- [ ] Implement sidebar navigation using `<NavLink>`.
-- [ ] Implement `PersonDetail.jsx` using `useParams()`.
-- [ ] Retrieve player records using `people.find()`.
-- [ ] Handle invalid player IDs with a 404 boundary.
-- [ ] Display player information using semantic HTML (`dl`, `dt`, `dd`).
+- [x] Set up React Router v7.
+- [x] Implement `PeopleLayout.jsx` with nested routes and `<Outlet />`.
+- [x] Implement sidebar navigation using `<NavLink>`.
+- [x] Implement `PersonDetail.jsx` using `useParams()`.
+- [x] Retrieve player records using `people.find()`.
+- [x] Handle invalid player IDs with a 404 boundary.
+- [x] Display player information using semantic HTML (`dl`, `dt`, `dd`).
 
 ### Sprint 2 — Appeal Form Engine
 
