@@ -30,25 +30,25 @@ The application supports keyboard and pointer interactions, undo functionality, 
 
 ### Phase 2: Frontend Interface
 
-- [ ] Build the main application layout.
+- [x] Build the main application layout.
 - [x] Create profile cards.
-- [ ] Implement swipe controls.
-- [ ] Display remaining cards and game statistics.
-- [ ] Add responsive styling.
+- [x] Implement swipe controls.
+- [x] Display remaining cards and game statistics.
+- [x] Add responsive styling.
 
 ### Phase 3: Swipe Interactions
 
-- [ ] Implement keyboard event handling.
-- [ ] Implement pointer-based swipe gestures.
-- [ ] Support Like, Reject, and Super Like actions.
-- [ ] Implement LIFO Undo Stack.
-- [ ] Handle empty deck and reset states.
+- [x] Implement keyboard event handling.
+- [x] Implement pointer-based swipe gestures.
+- [x] Support Like, Reject, and Super Like actions.
+- [x] Implement LIFO Undo Stack.
+- [x] Handle empty deck and reset states.
 
 ### Phase 4: Score System
 
-- [ ] Define asymmetric scoring rules.
-- [ ] Calculate scores using derived state.
-- [ ] Display updated scores and statistics.
+- [x] Define asymmetric scoring rules.
+- [x] Calculate scores using derived state.
+- [x] Display updated scores and statistics.
 
 ### Phase 5: Backend Development
 
@@ -68,12 +68,12 @@ The application supports keyboard and pointer interactions, undo functionality, 
 
 ### Phase 7: Testing and Documentation
 
-- [ ] Test keyboard and pointer interactions.
-- [ ] Test undo order and score calculation.
-- [ ] Test REST API endpoints.
-- [ ] Verify MongoDB persistence.
-- [ ] Capture screenshots and evidence.
-- [ ] Complete README documentation.
+- [x] Test keyboard and pointer interactions.
+- [x] Test undo order and score calculation.
+- [x] Test REST API endpoints.
+- [x] Verify MongoDB persistence.
+- [x] Capture screenshots and evidence.
+- [x] Complete README documentation.
 
 ## 4. Completion Criteria
 
