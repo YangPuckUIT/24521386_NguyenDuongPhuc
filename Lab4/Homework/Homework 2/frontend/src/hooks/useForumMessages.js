@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 
 const MAX_RETRIES = 3;
 const RETRY_DELAY = 1000;
@@ -27,7 +27,7 @@ export const useForumMessages = (forumId) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
+  const retryLocks = useRef(new Set());
   const fetchMessages = useCallback(
     async (signal) => {
       setLoading(true);
@@ -93,26 +93,107 @@ export const useForumMessages = (forumId) => {
   }, [fetchMessages]);
 
   const postMessage = async (payload) => {
-    const response = await fetch(
-      `http://localhost:5000/api/messages/${forumId}`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(payload),
-      },
-    );
+    const tempId = `temp-${crypto.randomUUID()}`;
 
-    if (!response.ok) {
-      throw new Error("Failed to post message");
+    const optimisticMessage = {
+      ...payload,
+      id: tempId,
+      timestamp: new Date().toISOString(),
+      status: "pending",
+    };
+
+    setData((previous) => [...previous, optimisticMessage]);
+
+    try {
+      const response = await fetch(
+        `http://localhost:5000/api/messages/${forumId}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(payload),
+        },
+      );
+
+      if (!response.ok) {
+        throw new Error("Failed to post message");
+      }
+
+      const savedMessage = await response.json();
+
+      setData((previous) =>
+        previous.map((item) =>
+          item.id === tempId ? { ...savedMessage, status: "sent" } : item,
+        ),
+      );
+
+      return savedMessage;
+    } catch (err) {
+      setData((previous) =>
+        previous.map((item) =>
+          item.id === tempId ? { ...item, status: "failed" } : item,
+        ),
+      );
+
+      throw err;
+    }
+  };
+
+  const retryMessage = async (item) => {
+    if (retryLocks.current.has(item.id)) {
+      return;
     }
 
-    const newMessage = await response.json();
+    retryLocks.current.add(item.id);
 
-    setData((previous) => [...previous, newMessage]);
+    setData((previous) =>
+      previous.map((message) =>
+        message.id === item.id ? { ...message, status: "pending" } : message,
+      ),
+    );
 
-    return newMessage;
+    try {
+      const response = await fetch(
+        `http://localhost:5000/api/messages/${forumId}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            author: item.author,
+            text: item.text,
+          }),
+        },
+      );
+
+      if (!response.ok) {
+        throw new Error("Failed to resend message");
+      }
+
+      const savedMessage = await response.json();
+
+      setData((previous) =>
+        previous.map((message) =>
+          message.id === item.id
+            ? { ...savedMessage, status: "sent" }
+            : message,
+        ),
+      );
+
+      return savedMessage;
+    } catch (err) {
+      setData((previous) =>
+        previous.map((message) =>
+          message.id === item.id ? { ...message, status: "failed" } : message,
+        ),
+      );
+
+      throw err;
+    } finally {
+      retryLocks.current.delete(item.id);
+    }
   };
 
   return {
@@ -120,5 +201,6 @@ export const useForumMessages = (forumId) => {
     loading,
     error,
     postMessage,
+    retryMessage,
   };
 };

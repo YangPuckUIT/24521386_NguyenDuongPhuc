@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useSearchParams } from "react-router";
 import { useForumMessages } from "../hooks/useForumMessages";
 
 function Forum({ forumId }) {
-  const { data, loading, error, postMessage } = useForumMessages(forumId);
+  const { data, loading, error, postMessage, retryMessage } =
+    useForumMessages(forumId);
   const [searchParams, setSearchParams] = useSearchParams();
 
   const searchQuery = searchParams.get("q") || "";
@@ -11,6 +12,7 @@ function Forum({ forumId }) {
   const [message, setMessage] = useState("");
   const [sending, setSending] = useState(false);
   const [submitError, setSubmitError] = useState("");
+  const submitLock = useRef(false);
 
   const filteredMessages = data.filter((item) => {
     const keyword = searchQuery.trim().toLowerCase();
@@ -38,7 +40,12 @@ function Forum({ forumId }) {
     event.preventDefault();
 
     const text = message.trim();
-    if (!text || sending) return;
+
+    if (!text || sending || submitLock.current) return;
+
+    submitLock.current = true;
+    setSending(true);
+    setSubmitError("");
 
     setSending(true);
     setSubmitError("");
@@ -52,7 +59,16 @@ function Forum({ forumId }) {
     } catch (err) {
       setSubmitError(err.message);
     } finally {
+      submitLock.current = false;
       setSending(false);
+    }
+  };
+
+  const handleRetry = async (item) => {
+    try {
+      await retryMessage(item);
+    } catch (err) {
+      setSubmitError(err.message);
     }
   };
 
@@ -96,11 +112,35 @@ function Forum({ forumId }) {
               <article className="forum-message" key={item.id}>
                 <div className="forum-message-meta">
                   <strong>{item.author}</strong>
+
                   <time dateTime={item.timestamp}>
                     {new Date(item.timestamp).toLocaleString()}
                   </time>
                 </div>
+
                 <p>{item.text}</p>
+
+                {item.status === "pending" && (
+                  <span className="message-status pending">Sending...</span>
+                )}
+
+                {item.status === "sent" && (
+                  <span className="message-status sent">Sent</span>
+                )}
+
+                {item.status === "failed" && (
+                  <div className="message-status failed">
+                    <span>Failed to send</span>
+
+                    <button
+                      type="button"
+                      disabled={item.status === "pending"}
+                      onClick={() => handleRetry(item)}
+                    >
+                      {item.status === "pending" ? "Retrying..." : "Retry"}
+                    </button>
+                  </div>
+                )}
               </article>
             ))
           )}
