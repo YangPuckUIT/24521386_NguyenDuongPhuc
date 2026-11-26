@@ -1,0 +1,30 @@
+{
+  "himass": [
+    {
+      "id": "msg-001",
+      "author": "Tribunal Admin",
+      "text": "The appeal review process has started.",
+      "timestamp": "2026-11-26T00:00:00.000Z"
+    },
+    {
+      "id": "155004b4-4521-446d-a4db-0d320151521f",
+      "text": "alaba trap",
+      "author": "Himass",
+      "timestamp": "2026-11-26T06:22:51.958Z"
+    }
+  ],
+  "tanvuu": [
+    {
+      "id": "msg-002",
+      "author": "Tribunal Admin",
+      "text": "Additional evidence is being reviewed.",
+      "timestamp": "2026-11-26T00:00:00.000Z"
+    },
+    {
+      "id": "5df3a1e2-09c5-4dce-8460-8592b0489c94",
+      "text": "JNKAFNA:FW",
+      "author": "TanVuu",
+      "timestamp": "2026-11-26T06:23:04.364Z"
+    }
+  ]
+}
