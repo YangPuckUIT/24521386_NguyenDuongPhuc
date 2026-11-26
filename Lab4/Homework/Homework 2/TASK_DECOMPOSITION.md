@@ -40,18 +40,18 @@ Build a full-stack React and Express application for managing esports fair-play 
 
 ### Additional Requirements
 
-- [ ] Implement `useAppealSlaTimer()` synchronized with the system clock.
-- [ ] Implement context-driven appeal form behavior.
-- [ ] Complete `AI_FAILURE_AUDIT.md` with architecture analysis.
+- [x] Implement `useAppealSlaTimer()` synchronized with the system clock.
+- [x] Implement context-driven appeal form behavior.
+- [x] Complete `AI_FAILURE_AUDIT.md` with architecture analysis.
 
 ### Sprint 4 — Testing and Live Defense Preparation
 
-- [ ] Test URL Search Params synchronization.
-- [ ] Test cross-field validation.
-- [ ] Test automatic retry with exponential backoff.
-- [ ] Test protected route guards.
-- [ ] Verify all application routes and API endpoints.
-- [ ] Prepare screenshots and project documentation.
+- [x] Test URL Search Params synchronization.
+- [x] Test cross-field validation.
+- [x] Test automatic retry with exponential backoff.
+- [x] Test protected route guards.
+- [x] Verify all application routes and API endpoints.
+- [x] Prepare screenshots and project documentation.
 
 ## Git Workflow
 
