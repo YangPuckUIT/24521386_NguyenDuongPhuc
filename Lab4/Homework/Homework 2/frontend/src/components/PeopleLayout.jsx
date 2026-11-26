@@ -9,7 +9,7 @@ export default function PeopleLayout({ people }) {
         {people.map((person) => (
           <NavLink
             key={person.id}
-            to={`/people/${person.id}`}
+            to={`/dossier/${person.id}`}
             className={({ isActive }) => (isActive ? "active-link" : "link")}
           >
             {person.name}

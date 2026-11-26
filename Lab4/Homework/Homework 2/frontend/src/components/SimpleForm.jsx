@@ -19,15 +19,29 @@ function validateForm(values) {
     errors.appealType = "Please select an appeal type.";
   }
 
-  if (!values.reason.trim()) {
+  const reason = values.reason.trim();
+
+  if (!reason) {
     errors.reason = "Please explain your appeal.";
-  } else if (values.reason.trim().length < 20) {
-    errors.reason = "Please provide at least 20 characters.";
+  } else {
+    const minimumLength = ["Match integrity", "Other"].includes(
+      values.appealType,
+    )
+      ? 30
+      : 20;
+
+    if (reason.length < minimumLength) {
+      errors.reason = `Please provide at least ${minimumLength} characters.`;
+    }
   }
 
-  if (values.evidenceUrl.trim()) {
+  const evidenceUrl = values.evidenceUrl.trim();
+
+  if (values.appealType === "Evidence dispute" && !evidenceUrl) {
+    errors.evidenceUrl = "Evidence URL is required for an evidence dispute.";
+  } else if (evidenceUrl) {
     try {
-      const url = new URL(values.evidenceUrl);
+      const url = new URL(evidenceUrl);
 
       if (!["http:", "https:"].includes(url.protocol)) {
         errors.evidenceUrl = "Please enter a valid HTTP or HTTPS URL.";

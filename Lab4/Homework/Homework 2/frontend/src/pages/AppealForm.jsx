@@ -17,7 +17,7 @@ export default function AppealForm() {
   return (
     <div className="appeal-page">
       <header className="page-header">
-        <NavLink to="/people" className="back-link">
+        <NavLink to="/dossier/himass" className="back-link">
           ← Player dossiers
         </NavLink>
 

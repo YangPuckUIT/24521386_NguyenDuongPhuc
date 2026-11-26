@@ -18,25 +18,25 @@ Build a full-stack React and Express application for managing esports fair-play 
 
 ### Sprint 2 — Appeal Form Engine
 
-- [ ] Implement `FormContext.js` and `useFormContext()`.
-- [ ] Implement `SimpleForm.jsx`.
-- [ ] Add synchronous form validation during rendering.
-- [ ] Implement `InputField.jsx` with `useId()`.
-- [ ] Add accessible validation using `aria-invalid` and `aria-describedby`.
-- [ ] Implement `ShowData.jsx` as a semantic JSON inspector.
-- [ ] Test real-time field validation.
+- [x] Implement `FormContext.js` and `useFormContext()`.
+- [x] Implement `SimpleForm.jsx`.
+- [x] Add synchronous form validation during rendering.
+- [x] Implement `InputField.jsx` with `useId()`.
+- [x] Add accessible validation using `aria-invalid` and `aria-describedby`.
+- [x] Implement `ShowData.jsx` as a semantic JSON inspector.
+- [x] Test real-time field validation.
 
 ### Sprint 3 — Forum API and Custom Hooks
 
-- [ ] Implement `useForumMessages.js`.
-- [ ] Fetch messages with `AbortController`.
-- [ ] Handle request cancellation and cleanup.
-- [ ] Implement the POST message helper.
-- [ ] Set up the Express REST API server.
-- [ ] Configure CORS and JSON middleware.
-- [ ] Implement GET and POST message endpoints.
-- [ ] Validate request payloads.
-- [ ] Generate message IDs using `crypto.randomUUID()`.
+- [x] Implement `useForumMessages.js`.
+- [x] Fetch messages with `AbortController`.
+- [x] Handle request cancellation and cleanup.
+- [x] Implement the POST message helper.
+- [x] Set up the Express REST API server.
+- [x] Configure CORS and JSON middleware.
+- [x] Implement GET and POST message endpoints.
+- [x] Validate request payloads.
+- [x] Generate message IDs using `crypto.randomUUID()`.
 
 ### Additional Requirements
 

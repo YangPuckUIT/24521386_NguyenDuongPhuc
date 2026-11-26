@@ -12,8 +12,8 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/people" element={<PeopleLayout people={people} />}>
-          <Route index element={<Navigate to="/people/himass" replace />} />
+        <Route path="/dossier" element={<PeopleLayout people={people} />}>
+          <Route index element={<Navigate to="/dossier/himass" replace />} />
 
           <Route path=":id" element={<PersonDetail people={people} />} />
         </Route>
@@ -27,7 +27,7 @@ function App() {
           }
         />
 
-        <Route path="*" element={<Navigate to="/people" replace />} />
+        <Route path="*" element={<Navigate to="/dossier/himass" replace />} />
       </Routes>
     </BrowserRouter>
   );

@@ -457,3 +457,24 @@ textarea.field-control {
   color: var(--muted-text, #718078);
   font-size: 0.9rem;
 }
+
+.forum > label {
+  display: block;
+  margin-top: 20px;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.forum > input[type="search"] {
+  width: 100%;
+  padding: 11px 12px;
+  border: 1px solid var(--border-color, #dce3df);
+  border-radius: 6px;
+  font: inherit;
+}
+
+.forum > input[type="search"]:focus,
+.forum-form textarea:focus {
+  outline: 2px solid #39765a;
+  outline-offset: 2px;
+}
