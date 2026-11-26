@@ -36,10 +36,10 @@ The implementation must synchronize the selected photo with the URL and provide 
 
 ### M2 – URL State Synchronization
 
-- [ ] Configure React Router.
-- [ ] Implement `useSearchParams()`.
-- [ ] Derive `selectedPhotoId` from the URL.
-- [ ] Update the URL when selecting a photo.
+- [x] Configure React Router.
+- [x] Implement `useSearchParams()`.
+- [x] Derive `selectedPhotoId` from the URL.
+- [x] Update the URL when selecting a photo.
 
 ### M3 – Native HTML5 Dialog
 

@@ -1,14 +1,28 @@
-import { useState } from "react";
+import { BrowserRouter, useSearchParams } from "react-router-dom";
 import PhotoGalleryLayout from "./components/PhotoGalleryLayout";
 
-function App() {
-  const [selectedPhotoId, setSelectedPhotoId] = useState(null);
+function GalleryApp() {
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const selectedPhotoId = searchParams.get("photoId");
+
+  const handleSelectPhoto = (photoId) => {
+    setSearchParams({ photoId });
+  };
 
   return (
     <PhotoGalleryLayout
       selectedPhotoId={selectedPhotoId}
-      onSelectPhoto={setSelectedPhotoId}
+      onSelectPhoto={handleSelectPhoto}
     />
+  );
+}
+
+function App() {
+  return (
+    <BrowserRouter>
+      <GalleryApp />
+    </BrowserRouter>
   );
 }
 
