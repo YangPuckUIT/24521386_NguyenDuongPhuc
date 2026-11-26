@@ -10,10 +10,15 @@ function GalleryApp() {
     setSearchParams({ photoId });
   };
 
+  const handleClose = () => {
+    setSearchParams({});
+  };
+
   return (
     <PhotoGalleryLayout
       selectedPhotoId={selectedPhotoId}
       onSelectPhoto={handleSelectPhoto}
+      onClose={handleClose}
     />
   );
 }

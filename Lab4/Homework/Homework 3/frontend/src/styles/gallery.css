@@ -112,3 +112,64 @@
     grid-template-columns: 1fr;
   }
 }
+
+.photo-dialog {
+  width: min(800px, calc(100% - 32px));
+  max-width: 800px;
+  max-height: 90vh;
+  padding: 0;
+  border: none;
+  border-radius: 10px;
+  background: #fff;
+  color: #222;
+  overflow: auto;
+}
+
+.photo-dialog::backdrop {
+  background: rgb(0 0 0 / 75%);
+}
+
+.dialog-content {
+  position: relative;
+}
+
+.dialog-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 1;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 5px;
+  background: #fff;
+  color: #222;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.dialog-close:focus-visible {
+  outline: 3px solid #287d61;
+  outline-offset: 3px;
+}
+
+.dialog-image {
+  display: block;
+  width: 100%;
+  max-height: 65vh;
+  object-fit: contain;
+  background: #171717;
+}
+
+.dialog-caption {
+  padding: 20px 24px 24px;
+}
+
+.dialog-caption h2 {
+  margin: 8px 0;
+  font-size: 24px;
+}
+
+.dialog-caption p:last-child {
+  color: #777;
+  line-height: 1.6;
+}

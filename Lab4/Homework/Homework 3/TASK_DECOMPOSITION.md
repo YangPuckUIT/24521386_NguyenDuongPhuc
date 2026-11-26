@@ -43,10 +43,10 @@ The implementation must synchronize the selected photo with the URL and provide 
 
 ### M3 – Native HTML5 Dialog
 
-- [ ] Create and bind `dialogRef`.
-- [ ] Implement `showModal()` and `close()` inside `useEffect()`.
-- [ ] Display the selected photo in the dialog.
-- [ ] Synchronize dialog closing with `setSearchParams({})`.
+- [x] Create and bind `dialogRef`.
+- [x] Implement `showModal()` and `close()` inside `useEffect()`.
+- [x] Display the selected photo in the dialog.
+- [x] Synchronize dialog closing with `setSearchParams({})`.
 
 ### M4 – Accessibility and Focus Management
 
