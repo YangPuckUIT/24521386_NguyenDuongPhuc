@@ -50,10 +50,10 @@ The implementation must synchronize the selected photo with the URL and provide 
 
 ### M4 – Accessibility and Focus Management
 
-- [ ] Verify native dialog focus behavior.
-- [ ] Support keyboard interaction.
-- [ ] Ensure focus returns to the triggering element after closing.
-- [ ] Verify accessible dialog labeling and controls.
+- [x] Verify native dialog focus behavior.
+- [x] Support keyboard interaction.
+- [x] Ensure focus returns to the triggering element after closing.
+- [x] Verify accessible dialog labeling and controls.
 
 ### M5 – Final Verification
 

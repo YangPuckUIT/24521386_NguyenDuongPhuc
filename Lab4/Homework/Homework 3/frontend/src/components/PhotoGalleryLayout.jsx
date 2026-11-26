@@ -4,6 +4,8 @@ import "../styles/gallery.css";
 
 function PhotoGalleryLayout({ selectedPhotoId, onSelectPhoto, onClose }) {
   const dialogRef = useRef(null);
+  const lastFocusedElementRef = useRef(null);
+  const galleryHeadingRef = useRef(null);
 
   const selectedPhoto = photos.find((photo) => photo.id === selectedPhotoId);
 
@@ -13,18 +15,38 @@ function PhotoGalleryLayout({ selectedPhotoId, onSelectPhoto, onClose }) {
     if (!dialog) return;
 
     if (selectedPhotoId && selectedPhoto) {
-      if (!dialog.open) dialog.showModal();
+      if (!dialog.open) {
+        dialog.showModal();
+      }
     } else {
-      if (dialog.open) dialog.close();
+      if (dialog.open) {
+        dialog.close();
+      }
     }
   }, [selectedPhotoId, selectedPhoto]);
+
+  const handleDialogClose = () => {
+    onClose();
+
+    const previousTrigger = lastFocusedElementRef.current;
+
+    if (previousTrigger?.isConnected) {
+      previousTrigger.focus();
+    } else {
+      galleryHeadingRef.current?.focus();
+    }
+
+    lastFocusedElementRef.current = null;
+  };
 
   return (
     <main className="gallery-page">
       <header className="gallery-header">
         <div>
           <p className="eyebrow">VISUAL COLLECTION</p>
-          <h1>Photo Gallery</h1>
+          <h1 ref={galleryHeadingRef} tabIndex={-1}>
+            Photo Gallery
+          </h1>
           <p className="gallery-description">
             A collection of moments, places and stories.
           </p>
@@ -39,7 +61,11 @@ function PhotoGalleryLayout({ selectedPhotoId, onSelectPhoto, onClose }) {
             className="photo-card"
             key={photo.id}
             type="button"
-            onClick={() => onSelectPhoto(photo.id)}
+            onClick={(event) => {
+              lastFocusedElementRef.current = event.currentTarget;
+              onSelectPhoto(photo.id);
+            }}
+            aria-label={`View ${photo.title}`}
           >
             <img src={photo.image} alt={photo.description} loading="lazy" />
 
@@ -55,7 +81,7 @@ function PhotoGalleryLayout({ selectedPhotoId, onSelectPhoto, onClose }) {
         ref={dialogRef}
         className="photo-dialog"
         aria-labelledby="dialog-title"
-        onClose={onClose}
+        onClose={handleDialogClose}
       >
         {selectedPhoto && (
           <div className="dialog-content">

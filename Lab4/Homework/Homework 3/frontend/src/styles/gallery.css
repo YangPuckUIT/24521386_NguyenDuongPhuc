@@ -173,3 +173,39 @@
   color: #777;
   line-height: 1.6;
 }
+
+/* WCAG 2.2 AA - Keyboard focus visibility */
+
+.photo-card:focus-visible {
+  outline: 3px solid #176b50;
+  outline-offset: 4px;
+}
+
+.dialog-close:focus-visible {
+  outline: 3px solid #176b50;
+  outline-offset: 3px;
+}
+
+/* Make keyboard focus on the gallery heading visible when restored */
+
+.gallery-header h1:focus {
+  outline: 3px solid #176b50;
+  outline-offset: 5px;
+  border-radius: 2px;
+}
+
+/* Improve text contrast */
+
+.photo-category,
+.gallery-description,
+.photo-count {
+  color: #666;
+}
+
+/* Respect reduced-motion preferences */
+
+@media (prefers-reduced-motion: reduce) {
+  .photo-card img {
+    transition: none;
+  }
+}
