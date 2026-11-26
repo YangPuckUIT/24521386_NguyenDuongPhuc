@@ -57,12 +57,12 @@ The implementation must synchronize the selected photo with the URL and provide 
 
 ### M5 – Final Verification
 
-- [ ] Test opening and closing the dialog.
-- [ ] Test direct URL access with a valid `photoId`.
-- [ ] Test browser back and forward navigation.
-- [ ] Verify URL synchronization.
-- [ ] Check keyboard accessibility.
-- [ ] Capture screenshots and document the implementation.
+- [x] Test opening and closing the dialog.
+- [x] Test direct URL access with a valid `photoId`.
+- [x] Test browser back and forward navigation.
+- [x] Verify URL synchronization.
+- [x] Check keyboard accessibility.
+- [x] Capture screenshots and document the implementation.
 
 ## Acceptance Criteria
 
