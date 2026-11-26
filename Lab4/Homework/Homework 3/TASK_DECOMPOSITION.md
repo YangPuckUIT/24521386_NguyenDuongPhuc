@@ -29,10 +29,10 @@ The implementation must synchronize the selected photo with the URL and provide 
 
 ### M1 – Photo Gallery Interface
 
-- [ ] Prepare photo data.
-- [ ] Build the gallery layout.
-- [ ] Display photos with appropriate descriptions.
-- [ ] Implement photo selection interactions.
+- [x] Prepare photo data.
+- [x] Build the gallery layout.
+- [x] Display photos with appropriate descriptions.
+- [x] Implement photo selection interactions.
 
 ### M2 – URL State Synchronization
 
