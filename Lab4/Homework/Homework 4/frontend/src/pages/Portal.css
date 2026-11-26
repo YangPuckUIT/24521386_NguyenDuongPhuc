@@ -1,0 +1,82 @@
+.portal {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 32px 20px;
+}
+
+.portal-header {
+  margin-bottom: 24px;
+}
+
+.portal-header p {
+  color: #68746d;
+}
+
+.portal-nav {
+  display: flex;
+  gap: 12px;
+  margin: 24px 0;
+}
+
+.portal-nav a {
+  text-decoration: none;
+  color: #315d48;
+  background: white;
+  border: 1px solid #dce2de;
+  padding: 12px 18px;
+  border-radius: 8px;
+}
+
+.dossier {
+  background: white;
+  border: 1px solid #e1e7e3;
+  border-radius: 12px;
+  padding: 24px;
+  margin: 20px 0;
+}
+
+.matrix {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.matrix-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px;
+  background: #f3f5f4;
+  border-radius: 8px;
+}
+
+.matrix-item span {
+  font-size: 14px;
+  color: #68746d;
+}
+
+.matrix-item strong {
+  font-size: 24px;
+}
+
+.sla-panel {
+  margin-top: 24px;
+  padding: 20px;
+  background: #dce9e2;
+  border-radius: 8px;
+}
+
+.sla-panel h3 {
+  margin-top: 0;
+}
+
+.sla-panel strong {
+  font-size: 22px;
+  color: #315d48;
+}
+
+@media (max-width: 550px) {
+  .matrix {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
