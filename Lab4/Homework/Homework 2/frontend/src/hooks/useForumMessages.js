@@ -1,5 +1,28 @@
 import { useState, useEffect, useCallback } from "react";
 
+const MAX_RETRIES = 3;
+const RETRY_DELAY = 1000;
+
+const wait = (ms, signal) =>
+  new Promise((resolve, reject) => {
+    if (signal.aborted) {
+      reject(new Error("Request aborted"));
+      return;
+    }
+
+    const timeoutId = setTimeout(() => {
+      signal.removeEventListener("abort", handleAbort);
+      resolve();
+    }, ms);
+
+    const handleAbort = () => {
+      clearTimeout(timeoutId);
+      reject(new Error("Request aborted"));
+    };
+
+    signal.addEventListener("abort", handleAbort, { once: true });
+  });
+
 export const useForumMessages = (forumId) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -7,21 +30,46 @@ export const useForumMessages = (forumId) => {
 
   const fetchMessages = useCallback(
     async (signal) => {
+      setLoading(true);
+      setError(null);
+
       try {
-        const response = await fetch(
-          `http://localhost:5000/api/messages/${forumId}`,
-          { signal },
-        );
+        for (let attempt = 0; attempt <= MAX_RETRIES; attempt++) {
+          try {
+            const response = await fetch(
+              `http://localhost:5000/api/messages/${forumId}`,
+              { signal },
+            );
 
-        if (!response.ok) {
-          throw new Error("Failed to fetch messages");
-        }
+            if (!response.ok) {
+              const requestError = new Error("Failed to fetch messages");
+              requestError.status = response.status;
+              throw requestError;
+            }
 
-        const result = await response.json();
+            const result = await response.json();
 
-        if (!signal.aborted) {
-          setData(result);
-          setError(null);
+            if (!signal.aborted) {
+              setData(result);
+              setError(null);
+            }
+
+            return;
+          } catch (err) {
+            if (signal.aborted) return;
+
+            const isClientError = err.status >= 400 && err.status < 500;
+
+            const isLastAttempt = attempt === MAX_RETRIES;
+
+            if (isClientError || isLastAttempt) {
+              setError(err.message);
+              return;
+            }
+
+            const delay = RETRY_DELAY * 2 ** attempt;
+            await wait(delay, signal);
+          }
         }
       } catch (err) {
         if (!signal.aborted) {
@@ -39,7 +87,6 @@ export const useForumMessages = (forumId) => {
   useEffect(() => {
     const controller = new AbortController();
 
-    setLoading(true);
     fetchMessages(controller.signal);
 
     return () => controller.abort();
@@ -74,4 +121,4 @@ export const useForumMessages = (forumId) => {
     error,
     postMessage,
   };
-}; //ok
+};
