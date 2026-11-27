@@ -44,7 +44,34 @@ Build a responsive evidence dashboard for the Himass & TanVuu PUBG fair-play cas
 - `src/App.jsx`
 - `src/index.css`
 
-git commit -m "style(exercise-1): implement responsive archive dashboard"
+## Progress
+
+- [x] Create project folder
+- [x] Initialize React + Vite
+- [x] Exercise 0.1 — Pure reducer and split contexts
+- [x] Exercise 0.1 — Dispatch-only ThemeToggle
+- [x] Exercise 0.2 — Derived pagination without useEffect
+- [x] Dashboard shell and navigation
+- [x] Evidence cards and mock dataset
+- [x] Responsive styling and container queries
+- [x] Verify functionality
+- [x] Git push
+
+## Implemented
+
+- Dark/light theme managed through reducer.
+- Navigation state managed through reducer.
+- State and dispatch contexts are separated.
+- Pagination derives visible records during render.
+- Responsive sidebar and evidence grid.
+- Minimum 44px navigation and pagination controls.
+- Mock evidence dataset with 8 entries.
+
+## Limitations
+
+- Evidence content is demonstration data.
+- Timeline and Case Overview are placeholder sections.
+- No backend or persistent storage.
 
 ## Verification
 

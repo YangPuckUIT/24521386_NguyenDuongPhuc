@@ -1,16 +1,70 @@
-# React + Vite
+# Exercise 0 — State Management & Responsive Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A responsive evidence dashboard for the Himass & TanVuu case archive, built with React and Vite.
 
-Currently, two official plugins are available:
+## Objectives
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- Implement a pure `useReducer` state management architecture.
+- Separate state and dispatch contexts.
+- Prevent unnecessary component re-renders.
+- Implement pagination using derived state without `useEffect`.
+- Build a responsive dashboard using CSS container queries.
 
-## React Compiler
+## Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Dark and light theme switching.
+- Sidebar navigation with multiple sections.
+- Evidence cards with status labels.
+- Pagination with render-time calculations.
+- Responsive layout for desktop and mobile.
+- React DevTools Profiler inspection.
 
-## Expanding the ESLint configuration
+## Technologies
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- React
+- Vite
+- JavaScript
+- CSS
+
+## Project Structure
+
+```text
+Exercise 1/
+├── src/
+│   ├── components/
+│   ├── context/
+│   ├── data/
+│   ├── reducer/
+│   ├── App.jsx
+│   └── index.css
+├── TASK_DECOMPOSITION.md
+└── README.md
+```
+
+## Getting Started
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Start development server:
+
+```bash
+npm run dev
+```
+
+Build the project:
+
+```bash
+npm run build
+```
+
+## Notes
+
+Evidence records are mock data for demonstration purposes. Timeline and Case Overview sections are placeholders.
+
+## Author
+
+Nguyen Duong Phuc — UIT
