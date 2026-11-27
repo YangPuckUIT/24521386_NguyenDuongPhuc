@@ -1,6 +1,7 @@
+import { memo } from "react";
 import { useAppDispatch } from "../context/useAppContext";
 
-export default function ThemeToggle() {
+function ThemeToggle() {
   const dispatch = useAppDispatch();
 
   return (
@@ -15,3 +16,5 @@ export default function ThemeToggle() {
     </button>
   );
 }
+
+export default memo(ThemeToggle);
