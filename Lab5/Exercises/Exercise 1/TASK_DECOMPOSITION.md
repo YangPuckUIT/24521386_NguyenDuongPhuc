@@ -44,16 +44,7 @@ Build a responsive evidence dashboard for the Himass & TanVuu PUBG fair-play cas
 - `src/App.jsx`
 - `src/index.css`
 
-## Progress
-
-- [x] Create project folder
-- [ ] Initialize React + Vite
-- [ ] Exercise 0.1
-- [ ] Exercise 0.2
-- [ ] Dashboard shell
-- [ ] Responsive styling
-- [ ] Verify functionality
-- [ ] Git commits and push
+git commit -m "style(exercise-1): implement responsive archive dashboard"
 
 ## Verification
 
