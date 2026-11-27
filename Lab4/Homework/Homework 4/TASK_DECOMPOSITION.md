@@ -37,5 +37,5 @@
 - [x] Verify backend API responses.
 - [x] Verify MongoDB data persistence.
 - [x] Verify frontend routes and interactions.
-- [ ] Capture screenshots for report.
-- [ ] Commit final task decomposition update.
+- [x] Capture screenshots for report.
+- [x] Commit final task decomposition update.
